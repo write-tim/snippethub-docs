@@ -13,8 +13,8 @@ public_folder: /images
 publish_mode: simple
 
 # Search & display settings
-site_url: https://write-tim.github.io/snippethub-docs/
-display_url: https://write-tim.github.io/snippethub-docs/
+site_url: https://snippethub-docs.awesomediscoveryzone.com/
+display_url: https://snippethub-docs.awesomediscoveryzone.com/
 logo_url: /images/icon48.png
 
 collections:

@@ -2,14 +2,10 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-const base = process.env.BASE_PATH !== undefined 
-  ? process.env.BASE_PATH 
-  : (process.env.GITHUB_ACTIONS === 'true' ? '/snippethub-docs' : '/');
-
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://write-tim.github.io',
-  base: base,
+  site: 'https://snippethub-docs.awesomediscoveryzone.com',
+  base: process.env.BASE_PATH || '/',
   integrations: [
     starlight({
       title: 'SnippetHub Support',
@@ -19,13 +15,9 @@ export default defineConfig({
         replacesTitle: false,
       },
       favicon: '/favicon.png',
-      social: [
-        {
-          icon: 'github',
-          label: 'GitHub',
-          link: 'https://github.com/write-tim/snippethub-docs'
-        }
-      ],
+      social: {
+        github: 'https://github.com/write-tim/snippethub-docs',
+      },
       sidebar: [
         {
           label: 'Overview',
