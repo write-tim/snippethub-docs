@@ -29,25 +29,6 @@ collections:
     slug: "{{slug}}"
     extension: md
     format: frontmatter
-    view_filters:
-      - label: Getting Started
-        field: folder
-        pattern: getting-started
-      - label: Features
-        field: folder
-        pattern: features
-      - label: Productivity
-        field: folder
-        pattern: productivity
-      - label: Account & Sync
-        field: folder
-        pattern: account-sync
-      - label: Customization
-        field: folder
-        pattern: customization
-      - label: Support & FAQs
-        field: folder
-        pattern: support
     fields:
       - label: "Title"
         name: "title"
