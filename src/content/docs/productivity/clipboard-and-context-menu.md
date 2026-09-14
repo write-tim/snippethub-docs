@@ -1,0 +1,23 @@
+---
+title: Clipboard & Context Menu
+description: Save snippets directly from web pages with right-click context menu integration.
+sidebar:
+  order: 2
+---
+
+Capture snippets on the fly as you browse without needing to copy and paste manually.
+
+## Save Selection to SnippetHub
+
+Whenever you encounter useful code, a canned response, or key information on a webpage:
+1. Highlight the text with your cursor.
+2. Right-click the highlighted selection.
+3. Choose **Save selection to SnippetHub** from Chrome's context menu.
+4. The SnippetHub side panel opens automatically with the highlighted text pre-filled in the editor, ready for you to title and tag!
+
+## One-Click Copy & Direct Page Insertion
+
+SnippetHub provides two primary methods for deploying snippets onto pages:
+- **Copy to Clipboard**: Copies the resolved snippet text (including any dynamic timestamps or filled variables) so you can paste it anywhere (`⌘V` / `Ctrl+V`).
+- **Insert into Active Field**: Directly writes the snippet into the active form field, text area, or input without overwriting your system clipboard.
+

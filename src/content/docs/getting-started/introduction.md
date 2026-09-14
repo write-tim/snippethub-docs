@@ -1,0 +1,25 @@
+---
+title: Introduction to SnippetHub
+description: Discover SnippetHub - the ultimate text snippet manager, code library, and personal knowledge base for Chrome.
+sidebar:
+  order: 1
+---
+
+**SnippetHub** is your personal command center for instant text. Whether you are drafting customer support emails, deploying code snippets, filling out repetitive forms, or maintaining canned responses, SnippetHub eliminates tedious typing and keeps your knowledge base at your fingertips.
+
+## Key Capabilities
+
+- **Always-Accessible Side Panel**: Keep your snippets docked right alongside any web page without switching tabs or apps.
+- **Lightning-Fast Command Palette**: Press `⌘K` (Mac) or `Ctrl+Shift+P` (Windows/Linux) to summon fuzzy search and insert snippets in a flash.
+- **Smart Dynamic Placeholders**: Automate timestamps (`{{date}}`, `{{time}}`), clipboard insertion (`{{clipboard}}`), and interactive user input prompts (`{{name}}`, `{{client:Client Name}}`).
+- **Omnibox Quick Access**: Type `snip` in Chrome's address bar followed by `Tab` or `Space` to search and copy snippets immediately.
+- **Rich Text & Syntax Highlighting**: Format snippets with rich text (headings, lists, bold) via Quill or write syntax-highlighted code blocks powered by Highlight.js.
+- **Seamless Cloud Sync**: Sign in with Google or Email to synchronize your snippet library across all your computers in real-time.
+- **Visual Categorization & Themes**: Group your snippets by color-coded folders and choose from 4 built-in themes (Light, Dark, Solarized, Monokai).
+
+## Docs-as-Code & Open Support
+
+This documentation and support knowledge base is built with a **docs-as-code** workflow. Every article is written in standard Markdown, stored in the GitHub repository, and editable visually via **Sveltia CMS** or directly via Git pull requests.
+
+Ready to get started? Head over to the [Installation Guide](./installation/)!
+

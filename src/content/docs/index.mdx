@@ -1,0 +1,54 @@
+---
+title: SnippetHub Support & Documentation
+description: Your Command Center for Instant Text. Organize, search, and deploy snippets, code, and knowledge instantly.
+template: splash
+hero:
+  tagline: Your command center for instant text. Organize, search, and instantly deploy your most used text snippets, code, and knowledge across the web.
+  image:
+    file: ../../assets/logo.png
+  actions:
+    - text: Get Started
+      link: ./getting-started/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: Keyboard Shortcuts
+      link: ./productivity/keyboard-shortcuts/
+      icon: document
+      variant: secondary
+    - text: Open Sveltia CMS
+      link: ./admin/
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Explore Documentation
+
+<CardGrid stagger>
+  <Card title="Quick Start & Installation" icon="rocket">
+    Get up and running with SnippetHub in minutes. Learn how to install the extension, save your first snippet, and pin the side panel.
+    [Read Quick Start Guide &rarr;](./getting-started/quick-start/)
+  </Card>
+  <Card title="Command Palette & Shortcuts" icon="pencil">
+    Fly through repetitive tasks using `⌘K` or `Ctrl+Shift+P`. Access snippet actions, fuzzy search, and instant insertion without leaving your keyboard.
+    [Explore Shortcuts &rarr;](./productivity/keyboard-shortcuts/)
+  </Card>
+  <Card title="Dynamic Placeholders & Variables" icon="setting">
+    Inject timestamps `{{date}}`, clipboard contents `{{clipboard}}`, and interactive user fill-in variables (`{{client:Client Name}}`) into any template.
+    [Learn Dynamic Variables &rarr;](./features/dynamic-placeholders/)
+  </Card>
+  <Card title="Cloud Sync & Backup" icon="open-book">
+    Sign in with Google or Email to automatically sync your snippets across Chrome installations with real-time Firebase backup.
+    [View Sync Guide &rarr;](./account-sync/cloud-sync-and-backup/)
+  </Card>
+  <Card title="Themes & Customization" icon="laptop">
+    Personalize your workspace with Light, Dark, Solarized, and Monokai themes, comfortable or compact density, and custom category colors.
+    [Customize SnippetHub &rarr;](./customization/themes-and-appearance/)
+  </Card>
+  <Card title="Troubleshooting & FAQs" icon="warning">
+    Have a question or running into an issue? Check out our troubleshooting guides, permissions explainer, and frequently asked questions.
+    [Visit Support &rarr;](./support/faq/)
+  </Card>
+</CardGrid>
+

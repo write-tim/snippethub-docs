@@ -1,0 +1,28 @@
+---
+title: Tags & Categories
+description: Organize your snippets into folders, assign searchable tags, and color-code categories.
+sidebar:
+  order: 1
+---
+
+Keep a growing library of hundreds of snippets neatly organized and effortless to find.
+
+## Folders & Categories
+
+- **Creating Folders**: Click the `+` folder button or press `⌘ShiftN` / `Ctrl+Shift+N`.
+- **Filtering by Folder**: Click any folder tab along the top of the side panel, or use numeric hotkeys (`1` through `9` to jump to folders, `0` to view All Folders).
+- **Drag & Drop**: Easily rearrange snippets into different folders.
+
+## Custom Category Colors
+
+Personalize each folder with distinctive colors:
+1. Click the profile avatar button in the top-right corner.
+2. Select **Category Colors**.
+3. Choose color swatches for each folder to visually identify snippet types instantly in search results and cards.
+
+## Tags
+
+Each snippet can have multiple searchable tags:
+- Separate tags with commas or spaces when creating/editing a snippet (e.g., `email, follow-up, client`).
+- Tags appear as clickable pills on snippet cards. Clicking a tag immediately filters your snippet list.
+

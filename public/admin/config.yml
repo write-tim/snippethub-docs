@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+backend:
+  name: github
+  repo: write-tim/snippethub-docs
+  branch: main
+  base_url: https://sveltia-gatekeeper.onrender.com
+
+# Where uploaded images/media will be stored in the repo and accessed on the site
+media_folder: public/images
+public_folder: /images
+
+# Editorial workflow (draft, review, publish) - optional
+publish_mode: simple
+
+# Search & display settings
+site_url: https://write-tim.github.io/snippethub-docs/
+display_url: https://write-tim.github.io/snippethub-docs/
+logo_url: /images/icon48.png
+
+collections:
+  - name: docs
+    label: Support & Documentation
+    label_singular: Article
+    folder: src/content/docs
+    create: true
+    nested:
+      depth: 3
+      summary: "{{title}}"
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    view_filters:
+      - label: Getting Started
+        field: folder
+        pattern: getting-started
+      - label: Features
+        field: folder
+        pattern: features
+      - label: Productivity
+        field: folder
+        pattern: productivity
+      - label: Account & Sync
+        field: folder
+        pattern: account-sync
+      - label: Customization
+        field: folder
+        pattern: customization
+      - label: Support & FAQs
+        field: folder
+        pattern: support
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        required: true
+      - label: "Description"
+        name: "description"
+        widget: "string"
+        required: false
+      - label: "Sidebar Navigation Settings"
+        name: "sidebar"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - label: "Order (Priority in list)"
+            name: "order"
+            widget: "number"
+            required: false
+          - label: "Badge Label (e.g. New, Pro, Tip)"
+            name: "badge"
+            widget: "string"
+            required: false
+          - label: "Hide from Sidebar"
+            name: "hidden"
+            widget: "boolean"
+            default: false
+            required: false
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        required: true

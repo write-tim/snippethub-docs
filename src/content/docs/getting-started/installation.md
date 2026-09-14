@@ -1,0 +1,43 @@
+---
+title: Installation & Setup
+description: How to install SnippetHub from the Chrome Web Store and configure permissions.
+sidebar:
+  order: 2
+---
+
+Setting up SnippetHub takes less than a minute.
+
+## Installing from the Chrome Web Store
+
+1. Open the [Chrome Web Store](https://chromewebstore.google.com/).
+2. Search for **SnippetHub - Text Snippet Manager**.
+3. Click **Add to Chrome** and confirm the extension installation prompt.
+4. Click the puzzle icon in the top right of Chrome and pin **SnippetHub** to your browser toolbar for quick access.
+
+## Developer Installation (Unpacked Extension)
+
+If you are developing SnippetHub or testing custom builds:
+
+1. Clone or download the SnippetHub repository from [GitHub](https://github.com/tmj51578/snippethub).
+2. Run `npm install && npm run build` to compile the bundles.
+3. Open Google Chrome and navigate to `chrome://extensions/`.
+4. Enable **Developer mode** using the toggle switch in the top-right corner.
+5. Click **Load unpacked** and select the root project directory containing `manifest.json`.
+
+## Understanding Permissions
+
+SnippetHub requests the minimum necessary permissions to provide a seamless snippet experience:
+
+| Permission | Why It's Needed |
+| :--- | :--- |
+| `sidePanel` | Displays the SnippetHub interface docked on the side of your browser. |
+| `storage` | Stores your snippets, settings, folders, and preferences locally. |
+| `contextMenus` | Adds the "Save selection to SnippetHub" option on highlighted webpage text. |
+| `clipboardRead` | Allows resolving dynamic `{{clipboard}}` placeholders and copying snippets to your clipboard. |
+| `identity` | Powers secure one-click sign-in with your Google account for cloud synchronization. |
+| `notifications` | Notifies you when snippets are successfully saved, imported, or synchronized. |
+
+## Next Steps
+
+Once installed, proceed to the [Quick Start Guide](./quick-start/) to create your first snippet!
+

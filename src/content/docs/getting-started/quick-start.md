@@ -1,0 +1,44 @@
+---
+title: Quick Start Guide
+description: Create your first snippet, customize dynamic placeholders, and insert text into any active webpage.
+sidebar:
+  order: 3
+---
+
+Follow this 3-minute tutorial to learn how to create, manage, and use snippets.
+
+## Step 1: Open the Side Panel
+
+Click the **SnippetHub** icon in your browser toolbar or press your configured browser shortcut to open Chrome's side panel.
+
+:::tip
+You can keep the side panel open while navigating across different tabs and websites.
+:::
+
+## Step 2: Create a New Snippet
+
+1. Click the **+ New Snippet** button in the top bar (or press `N` on your keyboard when not typing).
+2. Enter a descriptive **Title** (for example, `Meeting Follow-Up`).
+3. Add a tag or assign it to a category (e.g., `Work` or `Email`).
+4. Type your template content into the editor:
+   ```text
+   Hi {{client:Client Name}},
+
+   Thank you for taking the time to speak with me today, {{date}}.
+   As discussed, here is the link to review: {{clipboard}}
+
+   Best regards,
+   Timothy
+   ```
+5. Click **Save Snippet** (or press `⌘Enter` / `Ctrl+Enter`).
+
+## Step 3: Insert Your Snippet into a Webpage
+
+You have three convenient ways to deploy your new snippet:
+
+1. **Click to Copy / Direct Insert**: Click the **Copy** button on the snippet card or click **Insert** to inject it directly into the active text area or email composer.
+2. **Command Palette**: Press `⌘K` (Mac) or `Ctrl+Shift+P` (Windows), type `Meeting`, and press `Enter`.
+3. **Omnibox**: Click Chrome's address bar, type `snip`, hit `Space` or `Tab`, type `Meeting`, and press `Enter` to copy it to your clipboard.
+
+If your snippet contains interactive variables like `{{client:Client Name}}`, a lightweight prompt will ask for the client's name before inserting the text!
+
