@@ -27,7 +27,7 @@ collections:
       depth: 3
       summary: "{{title}}"
     slug: "{{slug}}"
-    extension: md
+    extension: mdx
     format: frontmatter
     fields:
       - label: "Title"
@@ -48,10 +48,25 @@ collections:
             name: "order"
             widget: "number"
             required: false
-          - label: "Badge Label (e.g. New, Pro, Tip)"
+          - label: "Sidebar Badge"
             name: "badge"
-            widget: "string"
+            widget: "object"
             required: false
+            collapsed: true
+            fields:
+              - { label: "Badge Text", name: "text", widget: "string", required: false }
+              - label: "Badge Color"
+                name: "variant"
+                widget: "select"
+                required: false
+                default: "default"
+                options:
+                  - { label: "Default", value: "default" }
+                  - { label: "Tip (Purple)", value: "tip" }
+                  - { label: "Success (Green)", value: "success" }
+                  - { label: "Note (Blue)", value: "note" }
+                  - { label: "Caution (Orange)", value: "caution" }
+                  - { label: "Danger (Red)", value: "danger" }
           - label: "Hide from Sidebar"
             name: "hidden"
             widget: "boolean"
@@ -61,3 +76,12 @@ collections:
         name: "body"
         widget: "markdown"
         required: true
+        editor_components:
+          - image
+          - code-block
+          - aside
+          - steps
+          - filetree
+          - badge
+          - tabs
+          - linkcard

@@ -1,0 +1,114 @@
+[
+  {
+    "title": "Installation & Setup",
+    "route": "/getting-started/installation/",
+    "desc": "How to install SnippetHub from the Chrome Web Store and configure permissions.",
+    "category": "1. Getting Started",
+    "file": "getting-started/installation.mdx"
+  },
+  {
+    "title": "Introduction to SnippetHub",
+    "route": "/getting-started/introduction/",
+    "desc": "Discover SnippetHub - the ultimate text snippet manager, code library, and personal knowledge base for Chrome.",
+    "category": "1. Getting Started",
+    "file": "getting-started/introduction.mdx"
+  },
+  {
+    "title": "Quick Start Guide",
+    "route": "/getting-started/quick-start/",
+    "desc": "Create your first snippet, customize dynamic placeholders, and insert text into any active webpage.",
+    "category": "1. Getting Started",
+    "file": "getting-started/quick-start.mdx"
+  },
+  {
+    "title": "Chrome Omnibox Integration",
+    "route": "/features/omnibox/",
+    "desc": "Search and copy snippets directly from Chrome's address bar with the 'snip' keyword.",
+    "category": "2. Features",
+    "file": "features/omnibox.mdx"
+  },
+  {
+    "title": "Command Palette",
+    "route": "/features/command-palette/",
+    "desc": "Fast, keyboard-driven fuzzy search and insertion from anywhere on the web.",
+    "category": "2. Features",
+    "file": "features/command-palette.mdx"
+  },
+  {
+    "title": "Dynamic Placeholders & Custom Variables",
+    "route": "/features/dynamic-placeholders/",
+    "desc": "Automate timestamps, clipboard paste, and interactive user prompts within your snippets.",
+    "category": "2. Features",
+    "file": "features/dynamic-placeholders.mdx"
+  },
+  {
+    "title": "Rich Text & Code Formatting",
+    "route": "/features/rich-text-and-code/",
+    "desc": "Author formatted text with Quill and syntax-highlighted code blocks with Highlight.js.",
+    "category": "2. Features",
+    "file": "features/rich-text-and-code.mdx"
+  },
+  {
+    "title": "The Chrome Side Panel",
+    "route": "/features/sidepanel/",
+    "desc": "Pin, organize, and interact with your snippets without leaving your current webpage.",
+    "category": "2. Features",
+    "file": "features/sidepanel.mdx"
+  },
+  {
+    "title": "Clipboard & Context Menu",
+    "route": "/productivity/clipboard-and-context-menu/",
+    "desc": "Save snippets directly from web pages with right-click context menu integration.",
+    "category": "3. Productivity",
+    "file": "productivity/clipboard-and-context-menu.mdx"
+  },
+  {
+    "title": "Keyboard Shortcuts Reference",
+    "route": "/productivity/keyboard-shortcuts/",
+    "desc": "Complete cheat sheet of global and in-app keyboard shortcuts for SnippetHub.",
+    "category": "3. Productivity",
+    "file": "productivity/keyboard-shortcuts.mdx"
+  },
+  {
+    "title": "Tags & Categories",
+    "route": "/productivity/tags-and-categories/",
+    "desc": "Organize your snippets into folders, assign searchable tags, and color-code categories.",
+    "category": "3. Productivity",
+    "file": "productivity/tags-and-categories.mdx"
+  },
+  {
+    "title": "Cloud Sync & Backup",
+    "route": "/account-sync/cloud-sync-and-backup/",
+    "desc": "Secure your snippet collection with Firebase cloud sync, Google sign-in, and JSON export/import.",
+    "category": "4. Account & Sync",
+    "file": "account-sync/cloud-sync-and-backup.mdx"
+  },
+  {
+    "title": "Themes & Appearance",
+    "route": "/customization/themes-and-appearance/",
+    "desc": "Choose color themes, toggle layout density, and customize your visual experience.",
+    "category": "5. Customization",
+    "file": "customization/themes-and-appearance.mdx"
+  },
+  {
+    "title": "Frequently Asked Questions",
+    "route": "/support/faq/",
+    "desc": "Common questions about SnippetHub usage, privacy, data storage, and compatibility.",
+    "category": "6. Support & FAQs",
+    "file": "support/faq.mdx"
+  },
+  {
+    "title": "Troubleshooting Guide",
+    "route": "/support/troubleshooting/",
+    "desc": "Solutions for common issues with shortcuts, sync, and page insertion.",
+    "category": "6. Support & FAQs",
+    "file": "support/troubleshooting.mdx"
+  },
+  {
+    "title": "SnippetHub Support & Documentation",
+    "route": "/",
+    "desc": "Your Command Center for Instant Text. Organize, search, and deploy snippets, code, and knowledge instantly.",
+    "category": "Home",
+    "file": "index.mdx"
+  }
+]

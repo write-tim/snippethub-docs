@@ -3,12 +3,959 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SnippetHub Docs | Sveltia CMS</title>
-    <link href="./config.yml" type="text/yaml" rel="cms-config-url" />
+    <meta name="robots" content="noindex" />
+    <title>Sveltia CMS | SnippetHub Support</title>
+    <!-- Starlight-like styling for CMS preview pane -->
+    <style>
+      .starlight-preview-aside {
+        border-inline-start: 4px solid #7c3aed;
+        padding: 0.85rem 1.25rem;
+        background-color: #f3f4f6;
+        border-radius: 0 6px 6px 0;
+        margin: 1.2rem 0;
+      }
+      .starlight-preview-aside.tip { border-color: #059669; background-color: #ecfdf5; }
+      .starlight-preview-aside.caution { border-color: #d97706; background-color: #fffbeb; }
+      .starlight-preview-aside.danger { border-color: #dc2626; background-color: #fef2f2; }
+      .starlight-preview-aside strong.title { display: block; margin-bottom: 0.35rem; }
+
+      .starlight-preview-steps ol {
+        list-style: none;
+        counter-reset: step-counter;
+        padding-left: 0;
+      }
+      .starlight-preview-steps ol > li {
+        counter-increment: step-counter;
+        position: relative;
+        padding-left: 2.2rem;
+        margin-bottom: 1rem;
+      }
+      .starlight-preview-steps ol > li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background-color: #7c3aed;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .starlight-preview-badge {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        background-color: #e5e7eb;
+        color: #1f2937;
+      }
+      .starlight-preview-badge.tip { background-color: #d1fae5; color: #065f46; }
+      .starlight-preview-badge.caution { background-color: #fef3c7; color: #92400e; }
+      .starlight-preview-badge.danger { background-color: #fee2e2; color: #991b1b; }
+
+      .starlight-preview-filetree {
+        font-family: monospace;
+        background: #1e1e2e;
+        color: #cdd6f4;
+        padding: 1rem;
+        border-radius: 6px;
+        white-space: pre-wrap;
+      }
+
+      /* Starlight Link Card Preview */
+      .starlight-preview-linkcard {
+        display: block;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        margin: 1.2rem 0;
+        background: #f9fafb;
+        text-decoration: none;
+        color: inherit;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .starlight-preview-linkcard:hover {
+        border-color: #7c3aed;
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+      }
+      .starlight-preview-linkcard .linkcard-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #7c3aed;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.35rem;
+      }
+      .starlight-preview-linkcard .linkcard-desc {
+        font-size: 0.875rem;
+        color: #4b5563;
+        margin: 0;
+      }
+      .starlight-preview-linkcard .linkcard-url {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin-top: 0.35rem;
+        font-family: monospace;
+      }
+
+      /* Styles for the Link Dialog Article Picker */
+      .cms-article-picker-section {
+        margin-bottom: 1.1rem;
+        padding: 0.85rem;
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+      }
+      .cms-article-picker-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.45rem;
+      }
+      .cms-article-picker-title {
+        font-weight: 600;
+        font-size: 0.825rem;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .cms-article-picker-hint {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+      .cms-article-filter-input,
+      .cms-article-select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.45rem 0.6rem;
+        font-size: 0.85rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        background: #ffffff;
+        color: #0f172a;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      .cms-article-filter-input:focus,
+      .cms-article-select:focus {
+        border-color: #7c3aed;
+        box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+      }
+      .cms-article-filter-wrapper {
+        margin-bottom: 0.45rem;
+      }
+      .cms-article-note {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        margin-top: 0.35rem;
+      }
+
+      /* Custom Checkbox Section for Open in New Window */
+      .cms-link-target-section {
+        margin-top: 0.75rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
+      .cms-link-target-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        user-select: none;
+      }
+      .cms-link-target-checkbox {
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        cursor: pointer;
+        accent-color: #7c3aed;
+      }
+      .cms-link-target-text {
+        font-size: 0.875rem;
+        color: #334155;
+        font-weight: 500;
+      }
+      .cms-link-target-label:hover .cms-link-target-text {
+        color: #0f172a;
+      }
+    </style>
   </head>
   <body>
-    <!-- Sveltia CMS Single Page Application -->
+    <!-- Load Sveltia CMS -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+    <script>
+      /**
+       * 1. Callouts / Asides (<Aside type="..." title="...">...</Aside>)
+       */
+      CMS.registerEditorComponent({
+        id: 'aside',
+        label: 'Starlight Aside / Callout',
+        fields: [
+          {
+            name: 'type',
+            label: 'Type',
+            widget: 'select',
+            options: ['note', 'tip', 'caution', 'danger'],
+            default: 'note'
+          },
+          { name: 'title', label: 'Title (Optional)', widget: 'string', required: false },
+          { name: 'content', label: 'Callout Content', widget: 'markdown' }
+        ],
+        pattern: /^<Aside(?: type="([a-zA-Z]+)")?(?: title="([^"]*)")?>\s*([\s\S]*?)\s*<\/Aside>/,
+        fromBlock: function (match) {
+          return {
+            type: match[1] || 'note',
+            title: match[2] || '',
+            content: match[3] || ''
+          };
+        },
+        toBlock: function (obj) {
+          const typeAttr = obj.type ? ` type="${obj.type}"` : '';
+          const titleAttr = obj.title ? ` title="${obj.title}"` : '';
+          return `<Aside${typeAttr}${titleAttr}>\n${obj.content || ''}\n</Aside>`;
+        },
+        toPreview: function (obj) {
+          const titleHtml = obj.title ? `<strong class="title">${obj.title}</strong>` : '';
+          return `
+            <div class="starlight-preview-aside ${obj.type || 'note'}">
+              ${titleHtml}
+              <div>${obj.content || ''}</div>
+            </div>
+          `;
+        }
+      });
+
+      /**
+       * 2. Numbered Sequential Steps (<Steps>...</Steps>)
+       */
+      CMS.registerEditorComponent({
+        id: 'steps',
+        label: 'Starlight Steps',
+        fields: [
+          {
+            name: 'content',
+            label: 'Ordered Steps (use 1. 2. 3.)',
+            widget: 'markdown'
+          }
+        ],
+        pattern: /^<Steps>\s*([\s\S]*?)\s*<\/Steps>/,
+        fromBlock: function (match) {
+          return { content: match[1] || '' };
+        },
+        toBlock: function (obj) {
+          return `<Steps>\n${obj.content || ''}\n</Steps>`;
+        },
+        toPreview: function (obj) {
+          return `
+            <div class="starlight-preview-steps">
+              <div>${obj.content || ''}</div>
+            </div>
+          `;
+        }
+      });
+
+      /**
+       * 3. Directory File Tree (<FileTree>...</FileTree>)
+       */
+      CMS.registerEditorComponent({
+        id: 'filetree',
+        label: 'Starlight File Tree',
+        fields: [
+          {
+            name: 'tree',
+            label: 'File Tree Structure (indented markdown list)',
+            widget: 'markdown'
+          }
+        ],
+        pattern: /^<FileTree>\s*([\s\S]*?)\s*<\/FileTree>/,
+        fromBlock: function (match) {
+          return { tree: match[1] || '' };
+        },
+        toBlock: function (obj) {
+          return `<FileTree>\n${obj.tree || ''}\n</FileTree>`;
+        },
+        toPreview: function (obj) {
+          return `
+            <div class="starlight-preview-filetree">
+              <pre>${obj.tree || ''}</pre>
+            </div>
+          `;
+        }
+      });
+
+      /**
+       * 4. Badges (<Badge text="..." variant="..." size="..." />)
+       */
+      CMS.registerEditorComponent({
+        id: 'badge',
+        label: 'Starlight Badge',
+        fields: [
+          { name: 'text', label: 'Badge Text', widget: 'string', required: true },
+          {
+            name: 'variant',
+            label: 'Color Variant',
+            widget: 'select',
+            options: ['default', 'note', 'tip', 'caution', 'danger', 'success'],
+            default: 'default'
+          },
+          {
+            name: 'size',
+            label: 'Size',
+            widget: 'select',
+            options: ['small', 'medium', 'large'],
+            default: 'medium'
+          }
+        ],
+        pattern: /^<Badge text="([^"]+)"(?: variant="([^"]+)")?(?: size="([^"]+)")?\s*\/>/,
+        fromBlock: function (match) {
+          return {
+            text: match[1] || 'Badge',
+            variant: match[2] || 'default',
+            size: match[3] || 'medium'
+          };
+        },
+        toBlock: function (obj) {
+          const variant = obj.variant ? ` variant="${obj.variant}"` : '';
+          const size = obj.size ? ` size="${obj.size}"` : '';
+          return `<Badge text="${obj.text}"${variant}${size} />`;
+        },
+        toPreview: function (obj) {
+          return `<span class="starlight-preview-badge ${obj.variant}">${obj.text}</span>`;
+        }
+      });
+
+      /**
+       * 5. Dual-Tab Switcher (<Tabs><TabItem label="...">...</TabItem></Tabs>)
+       */
+      CMS.registerEditorComponent({
+        id: 'tabs',
+        label: 'Starlight Tabs (2 Tabs)',
+        fields: [
+          { name: 'tab1_label', label: 'Tab 1 Label', widget: 'string', default: 'Tab 1' },
+          { name: 'tab1_content', label: 'Tab 1 Content', widget: 'markdown' },
+          { name: 'tab2_label', label: 'Tab 2 Label', widget: 'string', default: 'Tab 2' },
+          { name: 'tab2_content', label: 'Tab 2 Content', widget: 'markdown' }
+        ],
+        pattern: /^<Tabs>\s*<TabItem label="([^"]+)">\s*([\s\S]*?)\s*<\/TabItem>\s*<TabItem label="([^"]+)">\s*([\s\S]*?)\s*<\/TabItem>\s*<\/Tabs>/,
+        fromBlock: function (match) {
+          return {
+            tab1_label: match[1] || 'Tab 1',
+            tab1_content: match[2] || '',
+            tab2_label: match[3] || 'Tab 2',
+            tab2_content: match[4] || ''
+          };
+        },
+        toBlock: function (obj) {
+          return `<Tabs>\n  <TabItem label="${obj.tab1_label || 'Tab 1'}">\n    ${obj.tab1_content || ''}\n  </TabItem>\n  <TabItem label="${obj.tab2_label || 'Tab 2'}">\n    ${obj.tab2_content || ''}\n  </TabItem>\n</Tabs>`;
+        },
+        toPreview: function (obj) {
+          return `
+            <div style="border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; margin: 1rem 0;">
+              <div style="display: flex; background: #f3f4f6; border-bottom: 1px solid #e5e7eb;">
+                <div style="padding: 0.5rem 1rem; border-bottom: 2px solid #7c3aed; font-weight: 600; background: #fff;">${obj.tab1_label}</div>
+                <div style="padding: 0.5rem 1rem; color: #6b7280;">${obj.tab2_label}</div>
+              </div>
+              <div style="padding: 1rem;">${obj.tab1_content || ''}</div>
+            </div>
+          `;
+        }
+      });
+
+      /**
+       * -----------------------------------------------------------------------
+       * Article Dataset & Link Management for Sveltia CMS
+       * -----------------------------------------------------------------------
+       */
+      const INITIAL_ARTICLES = [
+        { "title": "Introduction to SnippetHub", "route": "/getting-started/introduction/", "desc": "Discover SnippetHub - the ultimate text snippet manager, code library, and personal knowledge base for Chrome.", "category": "1. Getting Started" },
+        { "title": "Installation & Setup", "route": "/getting-started/installation/", "desc": "Step-by-step guide to installing SnippetHub from the Chrome Web Store and configuring initial permissions.", "category": "1. Getting Started" },
+        { "title": "Quick Start Guide", "route": "/getting-started/quick-start/", "desc": "Create your first snippet, customize dynamic placeholders, and insert text into any active webpage.", "category": "1. Getting Started" },
+        { "title": "Always-Accessible Side Panel", "route": "/features/sidepanel/", "desc": "Keep your snippet library docked alongside any web page without switching tabs.", "category": "2. Features" },
+        { "title": "Omnibox Search (Address Bar)", "route": "/features/omnibox/", "desc": "Type 'snip' in Chrome's address bar to instantly search and copy snippets on the fly.", "category": "2. Features" },
+        { "title": "Command Palette", "route": "/features/command-palette/", "desc": "Summon fuzzy search with keyboard shortcuts and insert snippets without leaving your keyboard.", "category": "2. Features" },
+        { "title": "Dynamic Placeholders & Variables", "route": "/features/dynamic-placeholders/", "desc": "Automate dynamic dates, times, clipboard insertion, and interactive user fill-in fields.", "category": "2. Features" },
+        { "title": "Rich Text & Syntax Highlighting", "route": "/features/rich-text-and-code/", "desc": "Format snippets with rich text styles or write syntax-highlighted code blocks.", "category": "2. Features" },
+        { "title": "Keyboard Shortcuts", "route": "/productivity/keyboard-shortcuts/", "desc": "Master all keyboard shortcuts for rapid snippet creation, navigation, and deployment.", "category": "3. Productivity" },
+        { "title": "Clipboard & Context Menu", "route": "/productivity/clipboard-and-context-menu/", "desc": "Right-click anywhere to save selections directly as new snippets or paste existing templates.", "category": "3. Productivity" },
+        { "title": "Tags, Colors & Categories", "route": "/productivity/tags-and-categories/", "desc": "Organize large snippet collections with color-coded categories and searchable tags.", "category": "3. Productivity" },
+        { "title": "Cloud Sync & Real-Time Backup", "route": "/account-sync/cloud-sync-and-backup/", "desc": "Sign in to synchronize snippets across Chrome installations with real-time Firebase backup.", "category": "4. Account & Sync" },
+        { "title": "Themes & Appearance", "route": "/customization/themes-and-appearance/", "desc": "Customize SnippetHub with Light, Dark, Solarized, and Monokai themes and display density.", "category": "5. Customization" },
+        { "title": "Frequently Asked Questions", "route": "/support/faq/", "desc": "Answers to common questions regarding snippet limits, browser compatibility, and privacy.", "category": "6. Support & FAQs" },
+        { "title": "Troubleshooting & Debugging", "route": "/support/troubleshooting/", "desc": "Resolving sync conflicts, permission issues, shortcut conflicts, and offline behavior.", "category": "6. Support & FAQs" },
+        { "title": "Welcome to Support", "route": "/", "desc": "Official documentation and support portal for SnippetHub - Text Snippet Manager for Chrome.", "category": "Home" }
+      ];
+
+      let articlesList = [...INITIAL_ARTICLES];
+
+      function getArticleSelectOptions() {
+        return articlesList.map(function (a) {
+          const catLabel = a.category && a.category !== 'Home' ? ' (' + a.category.replace(/^[0-9.]+\s*/, '') + ')' : '';
+          return {
+            label: a.title + catLabel,
+            value: a.route
+          };
+        });
+      }
+
+      function getArticleByRoute(route) {
+        if (!route) return null;
+        const norm = route.endsWith('/') ? route : route + '/';
+        for (let i = 0; i < articlesList.length; i++) {
+          const r = articlesList[i].route;
+          const rNorm = r.endsWith('/') ? r : r + '/';
+          if (rNorm === norm || r === route) {
+            return articlesList[i];
+          }
+        }
+        return null;
+      }
+
+      function escapeAttr(str) {
+        return (str || '').replace(/"/g, '&quot;');
+      }
+
+      /**
+       * 6. Starlight Link Card (<LinkCard title="..." href="..." description="..." />)
+       */
+      CMS.registerEditorComponent({
+        id: 'linkcard',
+        label: 'Starlight Link Card',
+        fields: [
+          {
+            name: 'href',
+            label: 'Target Article',
+            widget: 'select',
+            options: getArticleSelectOptions()
+          },
+          { name: 'title', label: 'Card Title (Optional - defaults to article title)', widget: 'string', required: false },
+          { name: 'description', label: 'Card Description (Optional - defaults to article description)', widget: 'string', required: false }
+        ],
+        pattern: /^<LinkCard\s+[^>]*?\/>/,
+        fromBlock: function (match) {
+          const str = match[0] || '';
+          const titleMatch = str.match(/\btitle="([^"]*)"/);
+          const hrefMatch = str.match(/\bhref="([^"]*)"/);
+          const descMatch = str.match(/\bdescription="([^"]*)"/);
+          return {
+            title: titleMatch ? titleMatch[1] : '',
+            href: hrefMatch ? hrefMatch[1] : '',
+            description: descMatch ? descMatch[1] : ''
+          };
+        },
+        toBlock: function (obj) {
+          const art = getArticleByRoute(obj.href);
+          const title = obj.title || (art ? art.title : 'Article Link');
+          const desc = obj.description || (art ? art.desc : '');
+          const descAttr = desc ? ` description="${escapeAttr(desc)}"` : '';
+          return `<LinkCard title="${escapeAttr(title)}" href="${obj.href || '/'}"${descAttr} />`;
+        },
+        toPreview: function (obj) {
+          const art = getArticleByRoute(obj.href);
+          const title = obj.title || (art ? art.title : 'Article Link');
+          const desc = obj.description || (art ? art.desc : '');
+          const descHtml = desc ? `<p class="linkcard-desc">${desc}</p>` : '';
+          return `
+            <div class="starlight-preview-linkcard">
+              <div class="linkcard-title">
+                <span>${title}</span>
+                <span class="linkcard-arrow">&rarr;</span>
+              </div>
+              ${descHtml}
+              <div class="linkcard-url">${obj.href || '/'}</div>
+            </div>
+          `;
+        }
+      });
+
+      /**
+       * -----------------------------------------------------------------------
+       * Native Sveltia CMS Link Dialog Enhancer
+       * Injects a searchable article picker into Sveltia CMS's native Link dialog.
+       * -----------------------------------------------------------------------
+       */
+      function setInputValue(input, val) {
+        if (!input) return;
+        const descriptor = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value');
+        if (descriptor && descriptor.set) {
+          descriptor.set.call(input, val);
+        } else {
+          input.value = val;
+        }
+        input.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+      }
+
+      function enhanceLinkDialog(dialog) {
+        if (!dialog) return;
+
+        const urlInput = dialog.querySelector('input[id$="-url"], input[aria-label="URL"]');
+        if (!urlInput) return;
+
+        // 1. Locate the outer container for the URL field
+        const urlLabel = dialog.querySelector('label[for="' + urlInput.id + '"]') || (urlInput.labels && urlInput.labels[0]);
+        const urlFieldContainer = urlLabel
+          ? (urlLabel.closest('div[role="none"]') || urlLabel.parentElement)
+          : (urlInput.closest('[role="none"]')?.parentElement || urlInput.parentElement);
+        if (!urlFieldContainer || !urlFieldContainer.parentNode) return;
+
+        // 2. Ensure the "Pick from Existing Articles" section exists and is placed BEFORE the URL field
+        let picker = dialog.querySelector('.cms-article-picker-section');
+        if (!picker) {
+          picker = document.createElement('div');
+          picker.className = 'cms-article-picker-section';
+          picker.innerHTML = `
+            <div class="cms-article-picker-header">
+              <label class="cms-article-picker-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #7c3aed;">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                Pick from Existing Articles
+              </label>
+              <span class="cms-article-picker-hint">(Auto-fills URL &amp; title)</span>
+            </div>
+            <div class="cms-article-filter-wrapper">
+              <input type="search" class="cms-article-filter-input" placeholder="Search articles by title or section..." />
+            </div>
+            <div>
+              <select class="cms-article-select">
+                <option value="">-- Choose an existing article (or enter URL below) --</option>
+              </select>
+            </div>
+            <div class="cms-article-note">Selecting an article populates the destination URL and link text.</div>
+          `;
+
+          const filterInput = picker.querySelector('.cms-article-filter-input');
+          const select = picker.querySelector('.cms-article-select');
+
+          filterInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          });
+
+          function renderSelectOptions(filterText) {
+            const query = (filterText || '').toLowerCase().trim();
+            select.innerHTML = '<option value="">-- Choose an existing article (or enter URL below) --</option>';
+
+            const categories = {};
+            articlesList.forEach(function (art) {
+              const cat = art.category || 'Other';
+              if (!categories[cat]) categories[cat] = [];
+              categories[cat].push(art);
+            });
+
+            Object.keys(categories).forEach(function (cat) {
+              const matching = categories[cat].filter(function (art) {
+                if (!query) return true;
+                return (
+                  art.title.toLowerCase().includes(query) ||
+                  (art.desc && art.desc.toLowerCase().includes(query)) ||
+                  cat.toLowerCase().includes(query) ||
+                  art.route.toLowerCase().includes(query)
+                );
+              });
+
+              if (matching.length > 0) {
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = cat;
+                matching.forEach(function (art) {
+                  const opt = document.createElement('option');
+                  opt.value = art.route;
+                  opt.textContent = art.title;
+                  opt.dataset.title = art.title;
+                  opt.dataset.desc = art.desc || '';
+                  if (urlInput.value && (urlInput.value === art.route || urlInput.value === art.route.replace(/\/$/, ''))) {
+                    opt.selected = true;
+                  }
+                  optgroup.appendChild(opt);
+                });
+                select.appendChild(optgroup);
+              }
+            });
+          }
+
+          renderSelectOptions('');
+
+          filterInput.addEventListener('input', function () {
+            renderSelectOptions(filterInput.value);
+          });
+
+          select.addEventListener('change', function () {
+            const selectedRoute = select.value;
+            if (!selectedRoute) return;
+
+            setInputValue(urlInput, selectedRoute);
+            if (!dialog._isUserToggledTarget) {
+              const cb = dialog.querySelector('.cms-link-target-checkbox');
+              if (cb) cb.checked = false;
+            }
+
+            const currentTextInput = dialog.querySelector('input[id$="-text"], input[aria-label="Text"]');
+            const selectedOpt = select.options[select.selectedIndex];
+            const title = selectedOpt ? selectedOpt.dataset.title : '';
+
+            if (currentTextInput && title) {
+              if (!currentTextInput.value || currentTextInput.value === dialog._originalSelectedText || currentTextInput.value === selectedRoute) {
+                setInputValue(currentTextInput, title);
+              }
+            }
+          });
+        }
+
+        // Place picker immediately BEFORE the URL field container so URL label stays above the URL field
+        if (picker.parentNode !== urlFieldContainer.parentNode || picker.nextSibling !== urlFieldContainer) {
+          urlFieldContainer.parentNode.insertBefore(picker, urlFieldContainer);
+        }
+
+        // 3. Ensure the Text field exists and is placed right after the URL field
+        let builtInTextInput = dialog.querySelector('input[id$="-text"]:not(.cms-injected-input), input[aria-label="Text"]:not(.cms-injected-input)');
+        let activeTextFieldContainer = null;
+        let activeTextInput = null;
+        let isInjectedText = false;
+
+        if (builtInTextInput) {
+          // Sveltia rendered its native Text field
+          const prevInjected = dialog.querySelector('.cms-injected-text-field');
+          if (prevInjected) prevInjected.remove();
+
+          const textLabel = dialog.querySelector('label[for="' + builtInTextInput.id + '"]') || (builtInTextInput.labels && builtInTextInput.labels[0]);
+          activeTextFieldContainer = textLabel
+            ? (textLabel.closest('div[role="none"]') || textLabel.parentElement)
+            : (builtInTextInput.closest('[role="none"]')?.parentElement || builtInTextInput.parentElement);
+          activeTextInput = builtInTextInput;
+        } else {
+          // Sveltia omitted the Text field (text was selected) - inject matching Text field
+          isInjectedText = true;
+          let injectedContainer = dialog.querySelector('.cms-injected-text-field');
+          if (!injectedContainer) {
+            const textInputId = urlInput.id ? urlInput.id.replace(/-url$/, '-text') : 'cms-link-text-input';
+            injectedContainer = document.createElement('div');
+            injectedContainer.setAttribute('role', 'none');
+            injectedContainer.className = 'cms-injected-text-field';
+            const wrapperClass = (urlInput.parentElement && urlInput.parentElement.className) || 'sui text-field';
+            const inputClass = urlInput.className || '';
+            injectedContainer.innerHTML = `
+              <label for="${textInputId}">Text</label>
+              <div role="none" class="${wrapperClass}">
+                <input type="text" dir="auto" id="${textInputId}" class="${inputClass} cms-injected-input" aria-label="Text" />
+              </div>
+            `;
+          }
+          activeTextFieldContainer = injectedContainer;
+          activeTextInput = injectedContainer.querySelector('input');
+        }
+
+        // Position activeTextFieldContainer right AFTER urlFieldContainer
+        if (activeTextFieldContainer.parentNode !== urlFieldContainer.parentNode || urlFieldContainer.nextSibling !== activeTextFieldContainer) {
+          urlFieldContainer.parentNode.insertBefore(activeTextFieldContainer, urlFieldContainer.nextSibling);
+        }
+
+        // 4. Ensure "Open link in a new window" checkbox section exists and is placed BELOW the Text field
+        let targetSection = dialog.querySelector('.cms-link-target-section');
+        if (!targetSection) {
+          targetSection = document.createElement('div');
+          targetSection.className = 'cms-link-target-section';
+          targetSection.innerHTML = `
+            <label class="cms-link-target-label">
+              <input type="checkbox" class="cms-link-target-checkbox" id="cms-link-target-blank" />
+              <span class="cms-link-target-text">Open link in a new window</span>
+            </label>
+          `;
+          const cb = targetSection.querySelector('.cms-link-target-checkbox');
+          cb.addEventListener('change', function () {
+            dialog._isUserToggledTarget = true;
+          });
+        }
+
+        // Position targetSection right AFTER activeTextFieldContainer
+        if (targetSection.parentNode !== activeTextFieldContainer.parentNode || activeTextFieldContainer.nextSibling !== targetSection) {
+          activeTextFieldContainer.parentNode.insertBefore(targetSection, activeTextFieldContainer.nextSibling);
+        }
+
+        const targetCheckbox = targetSection.querySelector('.cms-link-target-checkbox');
+
+        // Helper: Check if a URL is external
+        function checkIsExternal(val) {
+          return /^(https?:)?\/\//i.test(val);
+        }
+
+        // 5. Initialize field values and checkbox state on dialog open
+        if (!dialog._cmsStateInitialized || dialog.dataset.cmsOpenState !== 'true') {
+          dialog.dataset.cmsOpenState = 'true';
+          dialog._cmsStateInitialized = true;
+          dialog._isUserToggledTarget = false;
+
+          let rawUrl = (urlInput.value || '').trim();
+          let cleanUrl = rawUrl.replace(/#(?:_blank|_self)$/, '');
+          let hasBlank = rawUrl.endsWith('#_blank');
+          let hasSelf = rawUrl.endsWith('#_self');
+          let isExternal = checkIsExternal(cleanUrl);
+          let isLikelyUrl = isExternal || cleanUrl.startsWith('/') || cleanUrl.startsWith('#') || cleanUrl.startsWith('mailto:') || cleanUrl.startsWith('./') || cleanUrl.startsWith('../');
+
+          if (isInjectedText) {
+            if (hasBlank || hasSelf || dialog.querySelector('.title')?.textContent?.includes('Update') || isLikelyUrl) {
+              setInputValue(urlInput, cleanUrl);
+              targetCheckbox.checked = hasBlank || (!hasSelf && isExternal);
+              if (hasSelf) dialog._isUserToggledTarget = true;
+
+              let linkText = window.getSelection()?.toString()?.trim() || '';
+              if (!linkText && cleanUrl) {
+                const linkEl = document.querySelector('.lexical-root a[href*="' + cleanUrl + '"]');
+                if (linkEl) linkText = linkEl.textContent.trim();
+              }
+              setInputValue(activeTextInput, linkText || cleanUrl);
+              dialog._originalSelectedText = linkText || cleanUrl;
+            } else if (rawUrl) {
+              setInputValue(activeTextInput, rawUrl);
+              dialog._originalSelectedText = rawUrl;
+              setInputValue(urlInput, '');
+              targetCheckbox.checked = false;
+            } else {
+              setInputValue(activeTextInput, '');
+              dialog._originalSelectedText = '';
+              targetCheckbox.checked = false;
+            }
+          } else {
+            if (hasBlank) {
+              targetCheckbox.checked = true;
+              setInputValue(urlInput, cleanUrl);
+            } else if (hasSelf) {
+              targetCheckbox.checked = false;
+              dialog._isUserToggledTarget = true;
+              setInputValue(urlInput, cleanUrl);
+            } else {
+              targetCheckbox.checked = isExternal;
+            }
+            dialog._originalSelectedText = '';
+          }
+        }
+
+        // 6. Dynamic input listener on urlInput
+        if (!urlInput._cmsTargetListenerAttached) {
+          urlInput._cmsTargetListenerAttached = true;
+          urlInput.addEventListener('input', function () {
+            const val = urlInput.value.trim();
+            if (!dialog._isUserToggledTarget) {
+              if (checkIsExternal(val)) {
+                targetCheckbox.checked = true;
+              } else if (val.startsWith('/') || val.startsWith('#')) {
+                targetCheckbox.checked = false;
+              }
+            }
+          });
+        }
+
+        // 7. Format URL and replace text before submission
+        function applyLinkTargetToInput() {
+          let currentVal = urlInput.value.trim();
+          if (!currentVal) return;
+
+          currentVal = currentVal.replace(/#(?:_blank|_self)$/, '');
+
+          if (targetCheckbox.checked) {
+            setInputValue(urlInput, currentVal + '#_blank');
+          } else {
+            if (checkIsExternal(currentVal) && dialog._isUserToggledTarget) {
+              setInputValue(urlInput, currentVal + '#_self');
+            } else {
+              setInputValue(urlInput, currentVal);
+            }
+          }
+        }
+
+        function handleInsertAction() {
+          if (isInjectedText && activeTextInput) {
+            const newText = activeTextInput.value.trim();
+            if (newText && newText !== dialog._originalSelectedText) {
+              const lexicalRoot = document.querySelector('.lexical-root');
+              const editor = lexicalRoot?.__lexicalEditor;
+              if (editor && editor._commands) {
+                for (const [cmdKey] of editor._commands) {
+                  if (cmdKey && cmdKey.type === 'CONTROLLED_TEXT_INSERTION_COMMAND') {
+                    editor.dispatchCommand(cmdKey, newText);
+                    break;
+                  }
+                }
+              }
+            }
+          }
+
+          applyLinkTargetToInput();
+        }
+
+        // Enter key inside injected text input triggers submission
+        if (isInjectedText && activeTextInput && !activeTextInput._cmsEnterListenerAttached) {
+          activeTextInput._cmsEnterListenerAttached = true;
+          activeTextInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              handleInsertAction();
+              const primaryBtn = dialog.querySelector('button.primary, button[type="submit"]');
+              if (primaryBtn) primaryBtn.click();
+            }
+          });
+        }
+
+        // Intercept primary action button click (capture phase)
+        if (!dialog._cmsClickCaptureAttached) {
+          dialog._cmsClickCaptureAttached = true;
+          dialog.addEventListener('click', function (e) {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const isCancel = btn.textContent && (btn.textContent.includes('Cancel') || btn.textContent.includes('cancel'));
+            if (!isCancel && (btn.classList.contains('primary') || btn.type === 'submit' || (btn.parentElement && btn.parentElement.tagName === 'FOOTER') || btn.closest('.footer'))) {
+              handleInsertAction();
+            }
+          }, true);
+        }
+
+        // Intercept Enter keydown in dialog (capture phase)
+        if (!dialog._cmsKeydownCaptureAttached) {
+          dialog._cmsKeydownCaptureAttached = true;
+          dialog.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              if (e.target && e.target.classList.contains('cms-article-filter-input')) {
+                return;
+              }
+              handleInsertAction();
+            }
+          }, true);
+        }
+      }
+
+      function initLinkDialogObserver() {
+        const observer = new MutationObserver(function (mutations) {
+          for (let i = 0; i < mutations.length; i++) {
+            const m = mutations[i];
+            if (m.type === 'childList') {
+              for (let j = 0; j < m.addedNodes.length; j++) {
+                const node = m.addedNodes[j];
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                  if (node.matches && (node.matches('dialog') || node.matches('.sui.dialog'))) {
+                    enhanceLinkDialog(node);
+                  }
+                  const dialogs = node.querySelectorAll ? node.querySelectorAll('dialog, .sui.dialog') : [];
+                  for (let k = 0; k < dialogs.length; k++) {
+                    enhanceLinkDialog(dialogs[k]);
+                  }
+                }
+              }
+            } else if (m.type === 'attributes' && m.attributeName === 'open') {
+              if (m.target) {
+                if (m.target.open) {
+                  enhanceLinkDialog(m.target);
+                } else {
+                  m.target.dataset.cmsOpenState = 'false';
+                  m.target._cmsStateInitialized = false;
+                }
+              }
+            }
+          }
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['open']
+        });
+
+        const existingDialogs = document.querySelectorAll('dialog, .sui.dialog');
+        for (let d = 0; d < existingDialogs.length; d++) {
+          enhanceLinkDialog(existingDialogs[d]);
+        }
+      }
+
+      async function syncArticles() {
+        try {
+          const res = await fetch('/admin/articles.json');
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) {
+              articlesList = data;
+            }
+          }
+        } catch (e) {
+          // Fallback to INITIAL_ARTICLES
+        }
+
+        // Check IndexedDB for newly added or drafted files in this session
+        try {
+          if (window.indexedDB && window.indexedDB.databases) {
+            const dbs = await window.indexedDB.databases();
+            for (let i = 0; i < dbs.length; i++) {
+              const dbName = dbs[i].name;
+              if (dbName && (dbName.includes('snippethub-docs') || dbName.startsWith('github:'))) {
+                const req = window.indexedDB.open(dbName);
+                req.onsuccess = function (ev) {
+                  const db = ev.target.result;
+                  if (db.objectStoreNames.contains('file-cache')) {
+                    const tx = db.transaction('file-cache', 'readonly');
+                    const store = tx.objectStore('file-cache');
+                    const getAllReq = store.getAll();
+                    getAllReq.onsuccess = function () {
+                      const items = getAllReq.result || [];
+                      items.forEach(function (item) {
+                        if (item && item.path && item.path.startsWith('src/content/docs/') && (item.path.endsWith('.mdx') || item.path.endsWith('.md'))) {
+                          const text = item.text || (item.data && item.data.text) || '';
+                          const titleM = text.match(/^title:\s*["'`]?(.*?)["'`]?$/m);
+                          const title = titleM ? titleM[1].trim() : '';
+                          if (title) {
+                            const rel = item.path.replace(/^src\/content\/docs\//, '');
+                            let route = '/' + rel.replace(/(index)?\.(mdx|md)$/, '');
+                            if (!route.endsWith('/') && route !== '/') route += '/';
+                            if (route === '//') route = '/';
+
+                            const exists = articlesList.some(function (a) { return a.route === route; });
+                            if (!exists) {
+                              articlesList.push({
+                                title: title,
+                                route: route,
+                                desc: '',
+                                category: 'Recent Drafts',
+                                file: rel
+                              });
+                            }
+                          }
+                        }
+                      });
+                    };
+                  }
+                };
+              }
+            }
+          }
+        } catch (err) {
+          // Graceful fallback
+        }
+      }
+
+      // Initialize
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          initLinkDialogObserver();
+          syncArticles();
+        });
+      } else {
+        initLinkDialogObserver();
+        syncArticles();
+      }
+    </script>
   </body>
 </html>
 
