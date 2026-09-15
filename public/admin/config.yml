@@ -42,6 +42,7 @@ logo_url: /images/snippethub.svg
     collapsed: false
     required: false
     fields:
+      - { label: "Short Sidebar Label", name: "label", widget: "string", required: false }
       - { label: "Sort Order", name: "order", widget: "number", value_type: "int", required: false }
       - label: "Sidebar Badge"
         name: "badge"
