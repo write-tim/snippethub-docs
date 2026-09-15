@@ -1,0 +1,57 @@
+---
+title: Analytics Dashboard & Daily Streaks
+description: Track your snippet usage, measure keystrokes and time saved, and build your daily productivity streak.
+sidebar:
+  order: 7
+---
+
+SnippetHub includes a built-in **Analytics Dashboard** that quantifies your productivity gains, tracks your most valuable templates, and helps you build a consistent daily typing habit with consecutive **Day Streaks**.
+
+## Accessing the Dashboard
+
+1. Open the SnippetHub side panel.
+2. Click the user avatar menu in the top-right corner.
+3. Select **Snippets Dashboard** (or access it directly during the interactive tour).
+4. Click the back arrow (`✕`) in the dashboard header at any time to return to your snippet list.
+
+## Daily Activity Streak Engine
+
+At the top of the dashboard and side panel is the **Daily Streak Banner**:
+
+```text
+🔥 5 Day Streak
+Great job! You used a snippet today to keep your streak alive.
+```
+
+### How the Streak Works
+
+- **Daily Activity Logging**: Every time you copy, insert, create, or edit a snippet, SnippetHub logs an activity event for the current calendar date (`YYYY-MM-DD`).
+- **Consecutive Days**: Each day you deploy or interact with SnippetHub increases your streak by +1.
+- **Grace Period (Active Today vs Yesterday)**: If you were active yesterday but have not yet used a snippet today, your streak remains safe! The banner will prompt you: *"Use a snippet today to build your streak!"*.
+- **Intelligent Fallback Calculation**: Even if local activity logs are cleared, the streak engine analyzes snippet timestamps (`lastCopied`, `updatedAt`, and `createdAt`) across your library so your historical streak is never unfairly lost.
+
+## Productivity Metrics & Insights
+
+The dashboard aggregates high-impact statistics about your workflow:
+
+### 1. Total Snippets
+Displays the total number of active snippets in your library across all folders and tags.
+
+### 2. Total Uses
+Tracks the cumulative number of times snippets have been copied, auto-expanded, or directly inserted into web pages.
+
+### 3. Characters Saved
+Calculates the exact number of keystrokes saved by comparing the length of the expanded snippet against the characters you would have needed to type manually.
+
+### 4. Time Saved (Estimated)
+Estimates hours and minutes reclaimed using an average typing speed calculation of 40 words per minute (WPM). Watching your time saved grow is one of the most rewarding parts of using SnippetHub!
+
+### 5. Most Used Snippets Leaderboard
+A ranked leaderboard showcasing your top 5 most frequently deployed snippets and their individual copy counts, helping you identify your highest-value templates.
+
+## Privacy & Local-First Philosophy
+
+:::note[Zero External Tracking]
+All analytics calculations, streak counts, and keystroke metrics run **100% locally** within your browser extension sandbox. SnippetHub never transmits your keystroke counts, usage patterns, or snippet text to third-party tracking services or data brokers.
+:::
+

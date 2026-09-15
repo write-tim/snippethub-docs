@@ -1,28 +1,56 @@
 ---
-title: Tags & Categories
-description: Organize your snippets into folders, assign searchable tags, and color-code categories.
+title: Folders, Tags & Customization
+description: Organize snippets with customized emoji and color-coded folders, dynamic tag filters, and batch actions.
 sidebar:
   order: 1
 ---
 
-Keep a growing library of hundreds of snippets neatly organized and effortless to find.
+Keep a library of hundreds of snippets neatly organized, visually distinct, and effortless to find using SnippetHub's multi-layered categorization system.
 
-## Folders & Categories
+## Folder Organization & Customization
 
-- **Creating Folders**: Click the `+` folder button or press `⌘ShiftN` / `Ctrl+Shift+N`.
-- **Filtering by Folder**: Click any folder tab along the top of the side panel, or use numeric hotkeys (`1` through `9` to jump to folders, `0` to view All Folders).
-- **Drag & Drop**: Easily rearrange snippets into different folders.
+Folders group related snippets together (e.g., `Work`, `Personal`, `Engineering`, `Templates`). Every folder in SnippetHub can be customized with a unique **emoji icon** and a **color accent dot**.
 
-## Custom Category Colors
+### Creating a Folder
 
-Personalize each folder with distinctive colors:
-1. Click the profile avatar button in the top-right corner.
-2. Select **Category Colors**.
-3. Choose color swatches for each folder to visually identify snippet types instantly in search results and cards.
+1. Click the folder actions menu (`⋮`) in the side panel controls header and choose **New Folder** (or press `⌘ShiftN` / `Ctrl+Shift+N`).
+2. Enter a name for the folder.
+3. Select an icon from the curated emoji chips (📁, 💻, 📧, 📝, 🛠️, 🚀, 📚, 💡, ⚡, 🎯, 🔒, 📦), or type any custom emoji into the text field.
+4. Pick a color accent from the palette swatches (Slate, Blue, Indigo, Purple, Pink, Rose, Amber, Emerald, Cyan), or use the native color picker for any custom HEX color.
+5. Click **Create Folder**.
 
-## Tags
+### Editing Existing Folders
 
-Each snippet can have multiple searchable tags:
-- Separate tags with commas or spaces when creating/editing a snippet (e.g., `email, follow-up, client`).
-- Tags appear as clickable pills on snippet cards. Clicking a tag immediately filters your snippet list.
+To change a folder's name, emoji, or accent color:
+1. Select the folder from the folder dropdown.
+2. Click the folder actions menu (`⋮`) and select **Edit Folder**.
+3. Adjust the name, pick a new emoji, or change the color swatch.
+4. Click **Save Changes**. All associated snippets immediately inherit the updated metadata.
 
+### Navigating Between Folders
+
+- **Folder Dropdown**: Click the folder menu to filter your list by folder. Each option displays its custom emoji and color accent dot.
+- **Keyboard Hotkeys**: Press numbers `1` through `9` to jump directly to your first 9 folders. Press `0` to view **All Snippets**.
+- **Move Snippets**: Use a snippet card's menu to reassign its folder, or use **Batch Select** to move multiple snippets simultaneously.
+
+## Interactive Tag Filter Bar
+
+Tags provide granular, cross-cutting labels (such as `email`, `javascript`, `onboarding`, `urgent`).
+
+```text
+Tags:  [#email 12]  [#javascript 8]  [#client 5]  [#templates 4]  [#sql 3]
+```
+
+### Features of the Tag Bar
+
+- **Dynamic Tag Discovery**: SnippetHub scans your library and generates horizontal scrollable filter chips displaying every active tag and its frequency count.
+- **Deterministic Color Palette**: Tags are automatically assigned harmonious, distinctive colors derived deterministically from the tag name, making them instantly recognizable.
+- **Custom Tag Colors**: You can define custom hex colors for specific tags in settings, ensuring consistent visual branding.
+- **One-Click Filtering**: Click any tag chip in the bar or on a snippet card to isolate snippets containing that tag.
+- **Active Filter Pill**: When a tag filter is active, a highlighted pill appears above the list with a one-click `✕` button to reset your view.
+
+## Assigning Tags to Snippets
+
+- When creating or editing a snippet, enter comma- or space-separated tags in the **Tags** field (e.g., `email, follow-up, client`).
+- Tags render on snippet cards as interactive colored pills.
+- You can also use the **Bulk Action Bar** to add a tag to multiple selected snippets at once.

@@ -1,31 +1,61 @@
 ---
 title: Troubleshooting Guide
-description: Solutions for common issues with shortcuts, sync, and page insertion.
+description: Solutions for common issues with text expansion, shortcuts, sync, and page insertion.
 sidebar:
   order: 2
 ---
 
-## Shortcut `⌘K` or `Ctrl+Shift+P` Does Not Open
+Find fast solutions to common questions and edge cases below.
 
-1. Navigate to `chrome://extensions/shortcuts` in your address bar.
-2. Scroll to **SnippetHub - Text Snippet Manager**.
-3. Check if another installed Chrome extension is conflicting with the same shortcut key.
-4. Set a new preferred shortcut or rebind `Open the Command Palette`.
+## In-Page Text Expander Not Triggering
+
+If typing a snippet keyword does not auto-expand:
+
+1. **Refresh the Page**: If a web tab was already open when SnippetHub was installed or updated, refresh the tab so the expansion content script is loaded.
+2. **Restricted Chrome Pages**: Chrome restricts extensions from running content scripts on internal browser pages (`chrome://*`, `chrome-extension://*`) and the official Chrome Web Store for security reasons. Test expansion on standard websites (e.g., Gmail, GitHub, or any standard form).
+3. **Verify Trigger Key & Keyword**:
+   - Check the **Trigger** dropdown in the avatar menu to confirm your active trigger prefix (e.g., `;` or `/`).
+   - If your keyword is `intro` and your trigger is `;`, type `;intro` followed by `Space`, `Enter`, or `Tab`.
+4. **ContentEditable Delimiters**: In certain rich editors (such as Gmail compose or Notion), ensure you follow the keyword with `Space` or `Enter` to finalize the expansion.
+
+---
 
 ## Direct Insertion Doesn't Work on a Specific Website
 
-Certain canvas-based editors (like Google Docs or custom iframe rich text widgets) do not respond to standard DOM input events:
-- Instead of clicking **Insert**, use the **Copy** button (or press `Enter` / `C`), then press `⌘V` (Mac) or `Ctrl+V` (Windows) to paste directly into the document.
+Certain canvas-rendered documents (such as Google Docs) or nested cross-origin iframes block direct DOM input simulation:
+
+- **Recommended Solution**: Use the **Copy** button (or press `Enter` / `C`), then press `⌘V` (Mac) or `Ctrl+V` (Windows) to paste.
+- **Rich Text Preservation**: Because SnippetHub writes multi-MIME payloads (`text/html` and `text/plain`), pasting into Google Docs, Microsoft Word, or Slack preserves all headings, bold formatting, links, and styling.
+
+---
+
+## Global Shortcut `⌘ShiftP` or `⌘K` Does Not Open
+
+1. Navigate to `chrome://extensions/shortcuts` in your address bar.
+2. Scroll to **SnippetHub - Text Snippet Manager**.
+3. Check whether another installed Chrome extension is claiming the same keybinding.
+4. Assign a new keyboard shortcut or rebind `Open the Command Palette`.
+
+---
 
 ## Snippets Not Syncing Across Computers
 
-1. Confirm you are signed into the same Google or Email account in the SnippetHub side panel on both machines.
-2. Check your internet connection.
-3. If necessary, sign out and sign back in from the user avatar dropdown menu to refresh your authentication token.
+1. **Verify Account**: Confirm you are signed into the same Google or Email account in the side panel on both computers.
+2. **Focus-Driven Refresh**: Simply clicking into a tab or opening the SnippetHub side panel triggers a cache sync with the background service worker.
+3. **Token Refresh**: If sync does not resume, sign out and sign back in via the user avatar menu to refresh your Firebase authentication token.
+
+---
+
+## Reverting to Custom Drag-and-Drop Order
+
+If you sorted your snippets alphabetically or by usage and want to return to your manual drag-and-drop order:
+1. Click the **Sort Order** button in the list controls header.
+2. Select **Default**. Your customized drag-and-drop layout will be restored immediately.
+
+---
 
 ## Need Additional Help?
 
-If you encounter a bug or have a feature request:
+If you discover a bug or want to propose an enhancement:
 - Open an issue on our [GitHub Repository](https://github.com/tmj51578/snippethub/issues).
-- Reach out to the maintainer via GitHub.
-
+- Reach out to the developer via the official repository or the in-app **Support** link.

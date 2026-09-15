@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions
-description: Common questions about SnippetHub usage, privacy, data storage, and compatibility.
+description: Common questions about SnippetHub usage, privacy, Vault export, streak engine, and customization.
 sidebar:
   order: 1
   badge: null
@@ -11,16 +11,49 @@ sidebar:
 
 ### Does SnippetHub work offline?
 
-Yes! SnippetHub stores all your snippets locally in Chrome's indexed storage. You can create, edit, search, and copy snippets without an active internet connection. When you reconnect, any changes automatically sync to Firebase.
+Yes! SnippetHub is built with an offline-first architecture. All snippets, folders, tags, and settings are stored locally in Chrome's indexed storage. You can create, edit, search, expand, and copy snippets without an active internet connection. When you reconnect, changes automatically synchronize to Firebase in the background.
 
-### Is my data secure and private?
+### Is my data private and secure?
 
-Yes. SnippetHub never sells your data or uses your snippets for tracking or advertising. If you sign in, snippets are transmitted over encrypted HTTPS connections directly to your authenticated Firebase cloud database.
+Yes. SnippetHub operates with strict privacy standards:
+- SnippetHub never sells your data or utilizes your snippet content for advertising or model training.
+- All analytics metrics (streaks, characters saved, usage counts) are computed strictly on your local machine.
+- Cloud data transfers occur over encrypted HTTPS connections directly to authenticated Firebase services.
 
 ### Can I format code in multiple programming languages?
 
-Yes. SnippetHub integrates with Highlight.js, supporting auto-detection and syntax highlighting for JavaScript, Python, HTML/CSS, JSON, SQL, Bash, and more.
+Yes. SnippetHub integrates with Highlight.js, supporting auto-detection and syntax highlighting for JavaScript, TypeScript, Python, HTML/CSS, JSON, YAML, SQL, Shell/Bash, Markdown, and more.
 
-### How do dynamic variables work?
+### How do dynamic placeholders and interactive variables work?
 
-When a snippet contains `{{date}}` or `{{time}}`, SnippetHub evaluates today's timestamp at the moment you copy or insert the snippet. If it contains custom variables like `{{client:Client Name}}`, an interactive prompt asks you to fill in the variable before inserting.
+When a snippet contains system tokens like `{{date}}` or `{{time}}`, SnippetHub computes today's timestamp at the exact millisecond of copy or expansion. If your template contains custom variables like `{{client:Client Name}}`, an interactive fill-in modal prompts you for input and automatically injects your response into the final text.
+
+---
+
+## Features & Customization
+
+### How does Vault Export (.zip) integrate with Obsidian and Notion?
+
+SnippetHub's **Vault Export** produces a standard PKZIP archive organized into folder directories. Each snippet is formatted as an individual Markdown file containing YAML frontmatter (`title`, `category`, `tags`, `keyword`, `folder`, `created`, `updated`, `favorite`, `pinned`). You can unzip the archive directly into your **Obsidian** vault folder or import it into **Notion** or **Logseq** with zero manual formatting required.
+
+### Why do copied snippets preserve formatting in Google Docs, Word, and Slack?
+
+SnippetHub uses modern multi-MIME clipboard copying via `ClipboardItem`. When you copy a snippet, SnippetHub simultaneously writes two payloads to your clipboard:
+1. `text/html`: Used by rich editors (Google Docs, Microsoft Word, Outlook, Gmail, Slack) to preserve formatting, bold text, links, headings, and bullet points.
+2. `text/plain`: Used by code editors, terminals, and standard plaintext fields to paste clean text without HTML markup.
+
+### How does the Daily Activity Streak engine work?
+
+Your daily streak increments by +1 for each consecutive day you use SnippetHub (by copying, expanding, inserting, creating, or editing snippets). If you were active yesterday but haven't used a snippet yet today, your streak is safely preserved through a grace period until the end of the day. Furthermore, snippet timestamps (`lastCopied`, `updatedAt`, `createdAt`) act as an intelligent fallback so your progress is never lost.
+
+### Can I change my keyword expansion trigger key?
+
+Yes! SnippetHub supports multiple trigger keys including `;` (Semicolon), `/` (Slash), `!` (Exclamation), `,` (Comma), `@` (At), `#` (Hash), `:` (Colon), and `~` (Tilde). You can change this setting at any time from the **Trigger** dropdown in the avatar menu.
+
+### How do custom folder emojis and colors work?
+
+When creating or editing a folder, you can pick from curated emoji chips (or enter any custom emoji character) and choose a curated color swatch (or select any custom HEX color). The selected emoji and color accent dot appear in the folder dropdown, on snippet cards, and in management menus.
+
+### How does drag-and-drop ordering interact with pinned snippets?
+
+Pinned snippets always stay grouped in the top partition of your list. You can freely reorder snippets within the pinned group and within the unpinned group using the drag handles. Your custom order is persisted across browser restarts and synchronized with your cloud account.

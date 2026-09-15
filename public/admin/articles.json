@@ -21,6 +21,13 @@
     "file": "getting-started/quick-start.mdx"
   },
   {
+    "title": "Analytics Dashboard & Daily Streaks",
+    "route": "/features/analytics-dashboard/",
+    "desc": "Track your snippet usage, measure keystrokes and time saved, and build your daily productivity streak.",
+    "category": "2. Features",
+    "file": "features/analytics-dashboard.mdx"
+  },
+  {
     "title": "Chrome Omnibox Integration",
     "route": "/features/omnibox/",
     "desc": "Search and copy snippets directly from Chrome's address bar with the 'snip' keyword.",
@@ -42,6 +49,13 @@
     "file": "features/dynamic-placeholders.mdx"
   },
   {
+    "title": "In-Page Text Expander",
+    "route": "/features/text-expansion/",
+    "desc": "Type keywords anywhere on the web to instantly expand snippets into active input fields and rich editors.",
+    "category": "2. Features",
+    "file": "features/text-expansion.mdx"
+  },
+  {
     "title": "Rich Text & Code Formatting",
     "route": "/features/rich-text-and-code/",
     "desc": "Author formatted text with Quill and syntax-highlighted code blocks with Highlight.js.",
@@ -56,11 +70,18 @@
     "file": "features/sidepanel.mdx"
   },
   {
-    "title": "Clipboard & Context Menu",
+    "title": "Clipboard & Context Menu Integration",
     "route": "/productivity/clipboard-and-context-menu/",
-    "desc": "Save snippets directly from web pages with right-click context menu integration.",
+    "desc": "Save text directly from web pages, configure right-click actions, and leverage multi-MIME rich text copying.",
     "category": "3. Productivity",
     "file": "productivity/clipboard-and-context-menu.mdx"
+  },
+  {
+    "title": "Folders, Tags & Customization",
+    "route": "/productivity/tags-and-categories/",
+    "desc": "Organize snippets with customized emoji and color-coded folders, dynamic tag filters, and batch actions.",
+    "category": "3. Productivity",
+    "file": "productivity/tags-and-categories.mdx"
   },
   {
     "title": "Keyboard Shortcuts Reference",
@@ -70,37 +91,30 @@
     "file": "productivity/keyboard-shortcuts.mdx"
   },
   {
-    "title": "Tags & Categories",
-    "route": "/productivity/tags-and-categories/",
-    "desc": "Organize your snippets into folders, assign searchable tags, and color-code categories.",
-    "category": "3. Productivity",
-    "file": "productivity/tags-and-categories.mdx"
-  },
-  {
-    "title": "Cloud Sync & Backup",
+    "title": "Cloud Sync, Backups & Vault Export",
     "route": "/account-sync/cloud-sync-and-backup/",
-    "desc": "Secure your snippet collection with Firebase cloud sync, Google sign-in, and JSON export/import.",
+    "desc": "Synchronize snippets across devices with Firebase, export Obsidian-compatible PKZIP vaults, and create multi-format backups.",
     "category": "4. Account & Sync",
     "file": "account-sync/cloud-sync-and-backup.mdx"
   },
   {
-    "title": "Themes & Appearance",
+    "title": "Themes & Visual Appearance",
     "route": "/customization/themes-and-appearance/",
-    "desc": "Choose color themes, toggle layout density, and customize your visual experience.",
+    "desc": "Choose color themes, configure layout density, customize folder colors, and style tags.",
     "category": "5. Customization",
     "file": "customization/themes-and-appearance.mdx"
   },
   {
     "title": "Frequently Asked Questions",
     "route": "/support/faq/",
-    "desc": "Common questions about SnippetHub usage, privacy, data storage, and compatibility.",
+    "desc": "Common questions about SnippetHub usage, privacy, Vault export, streak engine, and customization.",
     "category": "6. Support & FAQs",
     "file": "support/faq.mdx"
   },
   {
     "title": "Troubleshooting Guide",
     "route": "/support/troubleshooting/",
-    "desc": "Solutions for common issues with shortcuts, sync, and page insertion.",
+    "desc": "Solutions for common issues with text expansion, shortcuts, sync, and page insertion.",
     "category": "6. Support & FAQs",
     "file": "support/troubleshooting.mdx"
   },

@@ -1,0 +1,68 @@
+---
+title: In-Page Text Expander
+description: Type keywords anywhere on the web to instantly expand snippets into active input fields and rich editors.
+sidebar:
+  order: 6
+---
+
+SnippetHub includes a high-performance, in-page **Text Expander** engine. By assigning a short **Keyword** (or abbreviation) to any snippet, you can type that keyword anywhere on the web—in search bars, comment boxes, forms, email composers, or docs—and watch it instantly expand into your complete snippet.
+
+## How Text Expansion Works
+
+<Steps>
+1. **Assign a Keyword**: When creating or editing a snippet in the side panel, enter a short abbreviation in the **Keyword / Shortcut** field (e.g., `;sig`, `;intro`, or `/meeting`).
+2. **Type in Any Web Input**: Navigate to any webpage and place your cursor inside a text input field, textarea, or contenteditable editor (such as Gmail, Notion, Google Docs, or Slack).
+3. **Trigger Expansion**: Type your keyword followed by your expansion key (`Space`, `Enter`, or `Tab`), or immediately if using a leading trigger prefix. SnippetHub replaces your keyword with your resolved snippet text.
+</Steps>
+
+:::tip[Smart Variable Resolution]
+If your snippet contains dynamic placeholders (like `{{date}}` or `{{time}}`), they are computed and filled in at the exact millisecond of expansion. If your snippet contains custom interactive variables (`{{client:Client Name}}`), a non-intrusive fill-in popup will appear right at your cursor!
+:::
+
+## Customizable Expansion Trigger Keys
+
+You can choose your preferred trigger character to fit your typing rhythm and prevent accidental expansions while typing standard sentences.
+
+### Available Trigger Characters
+
+SnippetHub supports multiple popular trigger prefixes:
+
+- `;` **(Semicolon - Default)**: Standard for power users (e.g., `;email`, `;zoom`).
+- `/` **(Slash)**: Familiar from Notion and Slack slash commands (e.g., `/intro`, `/shrug`).
+- `!` **(Exclamation)**: Prominent prefix for technical macros (e.g., `!curl`, `!docker`).
+- `,` **(Comma)**: Low-finger-travel shortcut prefix.
+- `@` **(At Symbol)**: Great for contact details and mentions.
+- `#` **(Hash)**: Easy to reach on all keyboard layouts.
+- `:` **(Colon)**: Popular emoji-style shortcut prefix (e.g., `:pr`, `:review`).
+- `~` **(Tilde)**: Clean delimiter that avoids collision with normal prose.
+
+### Changing Your Trigger Key
+
+1. Open the SnippetHub side panel.
+2. Click the user avatar menu in the top-right corner.
+3. Locate the **Trigger** dropdown select under the *Customization* section.
+4. Select your preferred trigger prefix.
+5. Your choice is saved instantly to local and cloud storage (`chrome.storage.sync`), synchronizing your trigger preferences across all your devices.
+
+## Supported Input Types & Editors
+
+The SnippetHub expansion engine is engineered to handle modern web applications and diverse input architectures:
+
+- **Standard HTML Inputs**: `<input type="text">`, `<input type="email">`, `<input type="search">`, and multi-line `<textarea>`.
+- **ContentEditable Rich Text Editors**:
+  - **Gmail & Outlook Web**: Preserves non-breaking spaces and caret position.
+  - **Notion & Slack Web**: Correctly triggers and injects formatted content.
+  - **Zendesk, Intercom & Freshdesk**: Accelerates customer support workflows without requiring specialized helpdesk integrations.
+  - **GitHub & GitLab**: Works seamlessly in issue descriptions, pull request reviews, and markdown comments.
+
+## Keyword Best Practices
+
+To maximize speed and avoid collisions with regular typing:
+
+1. **Use a Consistent Prefix**: Prefixing keywords with your trigger symbol (e.g., `;addr` for your address, `;meet` for your calendar link) prevents the expander from triggering when you write words containing the same letters.
+2. **Keep Them Short**: 3–5 characters is ideal for muscle memory.
+3. **Group by Context**:
+   - `;e...` for email responses (`;ethx`, `;efollow`, `;eintro`)
+   - `;c...` for code snippets (`;clog`, `;cfetch`, `;csql`)
+   - `;u...` for URLs and links (`;uzoom`, `;ugh`, `;udocs`)
+

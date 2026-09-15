@@ -31,20 +31,24 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
     Get up and running with SnippetHub in minutes. Learn how to install the extension, save your first snippet, and pin the side panel.
     [Read Quick Start Guide &rarr;](./getting-started/quick-start/)
   </Card>
-  <Card title="Command Palette & Shortcuts" icon="pencil">
-    Fly through repetitive tasks using `⌘K` or `Ctrl+Shift+P`. Access snippet actions, fuzzy search, and instant insertion without leaving your keyboard.
-    [Explore Shortcuts &rarr;](./productivity/keyboard-shortcuts/)
+  <Card title="In-Page Text Expander" icon="seti:javascript">
+    Type keywords (like `;intro` or `/sig`) to expand text instantly in Gmail, Notion, Slack, and web forms with configurable trigger keys.
+    [Explore Text Expansion &rarr;](./features/text-expansion/)
   </Card>
-  <Card title="Dynamic Placeholders & Variables" icon="setting">
-    Inject timestamps `{{date}}`, clipboard contents `{{clipboard}}`, and interactive user fill-in variables (`{{client:Client Name}}`) into any template.
-    [Learn Dynamic Variables &rarr;](./features/dynamic-placeholders/)
+  <Card title="Vault Export & Backups" icon="open-book">
+    Export your snippet library to Obsidian- and Notion-compatible Markdown vaults (.zip) with YAML frontmatter, or export to JSON, CSV, and Markdown.
+    [View Vault & Backup Guide &rarr;](./account-sync/cloud-sync-and-backup/)
   </Card>
-  <Card title="Cloud Sync & Backup" icon="open-book">
-    Sign in with Google or Email to automatically sync your snippets across Chrome installations with real-time Firebase backup.
-    [View Sync Guide &rarr;](./account-sync/cloud-sync-and-backup/)
+  <Card title="Analytics & Daily Streaks" icon="star">
+    Track typing time saved, total snippet deployments, and maintain your consecutive daily productivity streak.
+    [View Analytics Guide &rarr;](./features/analytics-dashboard/)
   </Card>
-  <Card title="Themes & Customization" icon="laptop">
-    Personalize your workspace with Light, Dark, Solarized, and Monokai themes, comfortable or compact density, and custom category colors.
+  <Card title="Folders, Tags & Colors" icon="setting">
+    Organize snippets into folders with custom emojis and color swatches, filter with the interactive tag bar, and reorder via drag-and-drop.
+    [Organize Your Library &rarr;](./productivity/tags-and-categories/)
+  </Card>
+  <Card title="Themes & Appearance" icon="laptop">
+    Personalize your workspace with Light, Dark, Solarized, and Monokai themes, comfortable or compact density, and multi-MIME rich text clipboard copy.
     [Customize SnippetHub &rarr;](./customization/themes-and-appearance/)
   </Card>
   <Card title="Troubleshooting & FAQs" icon="warning">
@@ -52,4 +56,3 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
     [Visit Support &rarr;](./support/faq/)
   </Card>
 </CardGrid>
-

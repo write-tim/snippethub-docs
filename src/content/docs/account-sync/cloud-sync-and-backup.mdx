@@ -1,38 +1,101 @@
 ---
-title: Cloud Sync & Backup
-description: Secure your snippet collection with Firebase cloud sync, Google sign-in, and JSON export/import.
+title: Cloud Sync, Backups & Vault Export
+description: Synchronize snippets across devices with Firebase, export Obsidian-compatible PKZIP vaults, and create multi-format backups.
 sidebar:
   order: 1
 ---
 
-Never lose your snippet collection when upgrading computers or switching workstations.
+SnippetHub combines real-time cloud synchronization with comprehensive data ownership. You can seamlessly synchronize your library across workstations or export your entire knowledge base into open, portable formats.
 
-## Cloud Synchronization
+## Real-Time Cloud Synchronization
 
-SnippetHub uses Firebase to securely store and sync your snippets in the cloud.
+SnippetHub uses an offline-first Firebase backend to securely store and sync your snippets in the cloud.
 
 ### Signing In
 1. Open the SnippetHub side panel.
-2. Click **Sign In with Google** for instant authentication with your browser account, or use **Email and Password**.
-3. Once logged in, snippets, folders, and custom tags sync across any Chrome instance where you are signed into SnippetHub.
+2. Click **Sign In with Google** for instant single-sign-on using your active browser account, or use **Email and Password**.
+3. Once authenticated, your snippets, folders, custom emojis, color accents, tag colors, and drag-and-drop order sync across every Chrome installation where you are signed in.
 
-## Offline Mode
+### Focus-Driven Sync & Offline Resilience
+- **Offline-First**: All snippets are cached in Chrome's local storage. You can create, edit, search, and copy snippets without an active internet connection.
+- **Focus-Driven Refresh**: Whenever you switch tabs or open the side panel, SnippetHub verifies cache freshness with the background service worker, ensuring instant updates if snippets were added or modified on another computer.
+- **Order Persistence**: Your custom drag-and-drop ordering and sort mode preferences are persisted and synced across login sessions.
 
-SnippetHub is offline-first. All snippets are cached in Chrome's local storage:
-- You can create, edit, search, and copy snippets even without an active internet connection.
-- When you reconnect to the network, your changes are automatically synchronized to the cloud in the background.
+---
 
-## Manual Backup (Export & Import)
+## Vault Export (.zip) — Obsidian & Notion Compatible
 
-To create local backups or migrate snippets:
+SnippetHub features a zero-dependency, pure client-side **PKZIP archive engine** (`src/sidepanel/utils/zip.js`) that transforms your snippet library into an open-standard Markdown knowledge vault.
 
-### Exporting Snippets
-1. Click the user avatar menu in the top-right corner.
-2. Select **Dashboard** or **Export**.
-3. Download a `.json` backup file containing your complete snippet library, categories, and tags.
+```text
+snippets_vault.zip
+├── Support/
+│   ├── Welcome Email.md
+│   └── Refund Policy.md
+├── Engineering/
+│   ├── Docker Compose Template.md
+│   └── Postgres Connection String.md
+└── Quick Notes.md
+```
 
-### Importing Snippets
-1. From the menu, select **Import Snippets**.
-2. Select your JSON backup file.
-3. SnippetHub will merge the imported snippets into your library without overwriting existing entries.
+### Vault Markdown Structure
 
+Each snippet is exported as an individual Markdown file inside a subfolder matching its SnippetHub folder. Every file begins with clean, standardized YAML frontmatter fully recognized by **Obsidian**, **Notion**, **Logseq**, and static site generators:
+
+```markdown
+---
+title: "Customer Welcome Email"
+category: "Templates"
+tags: ["email", "onboarding"]
+keyword: ";welcome"
+folder: "Support"
+created: "2026-03-01"
+updated: "2026-03-10"
+favorite: true
+pinned: false
+---
+
+# Customer Welcome Email
+
+Hi there,
+
+Welcome to **SnippetHub**! We are thrilled to have you on board.
+```
+
+### Benefits of Vault Export
+- **Zero Lock-In**: Drag the unzipped folder directly into Obsidian or import it into Notion to use your snippets as a permanent local wiki.
+- **Preserved Timestamps**: Internal MS-DOS file timestamps in the ZIP match your snippet's `updatedAt` and `createdAt` dates.
+- **Safe Filenames**: Special characters (like slashes, colons, and question marks) are automatically sanitized, and identical titles receive unique suffixes to avoid file overwrites.
+
+---
+
+## Multiple Export Formats
+
+Export your entire library from the user avatar menu under **Data**:
+
+| Format | File Extension | Details |
+| :--- | :--- | :--- |
+| **Vault (.zip)** | `.zip` | Hierarchical folder structure of individual Markdown files with YAML frontmatter. |
+| **JSON** | `.json` | Complete programmatic backup including snippets, folder metadata (emojis & color swatches), custom tag colors, and UI preferences. |
+| **Markdown** | `.md` | A single compiled Markdown file with horizontal rule separators and frontmatter headers. |
+| **CSV** | `.csv` | Spreadsheet-ready export containing Title, Category, Tags, Folder, Copy Count, Last Used timestamp, and plaintext content. |
+
+### Bulk Subset Export
+
+You can export a targeted subset of your library rather than everything:
+
+1. Click the **Bulk Edit** button in the list header (or hold `Shift` while clicking snippet cards).
+2. Select the specific snippets you wish to export.
+3. In the floating **Bulk Action Bar**, click **Export**.
+4. Choose **Export as Vault (.zip)**, **JSON**, **Markdown**, or **CSV**. Only your selected items will be bundled and downloaded.
+
+---
+
+## Importing Backups
+
+To restore your snippets or migrate from another device:
+
+1. Click your avatar icon in the top-right corner of the side panel.
+2. Under the **Data** section, select **Import from JSON...**.
+3. Choose your SnippetHub JSON backup file.
+4. SnippetHub safely parses and imports your snippets, folders, and metadata, merging new items without overwriting your existing library.
