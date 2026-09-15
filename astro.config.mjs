@@ -50,11 +50,9 @@ export default defineConfig({
           autogenerate: { directory: 'support' },
         },
         {
-          label: 'Content Management',
-          items: [
-            { label: 'Sveltia CMS Admin', link: '/admin/', badge: { text: 'CMS', variant: 'tip' } }
-          ]
-        }
+          label: 'Back to SnippetHub',
+          link: 'https://awesomediscoveryzone.com/snippethub/',
+        },
       ],
     }),
   ],
