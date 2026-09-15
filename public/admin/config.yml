@@ -17,71 +17,110 @@ site_url: https://snippethub-docs.awesomediscoveryzone.com/
 display_url: https://snippethub-docs.awesomediscoveryzone.com/
 logo_url: /images/snippethub.svg
 
-collections:
-  - name: docs
-    label: Support & Documentation
-    label_singular: Article
-    folder: src/content/docs
-    create: true
-    nested:
-      depth: 3
-      summary: "{{title}}"
-    slug: "{{slug}}"
-    extension: mdx
-    format: frontmatter
+# ---------------------------------------------------------
+# Define reusable fields block using a YAML anchor (&)
+# ---------------------------------------------------------
+.docs_fields: &DOCS_FIELDS
+  - { label: "Title", name: "title", widget: "string", required: true }
+  - { label: "Description", name: "description", widget: "string", required: false }
+  - label: "Body"
+    name: "body"
+    widget: "markdown"
+    required: true
+    editor_components:
+      - image
+      - code-block
+      - aside
+      - steps
+      - filetree
+      - badge
+      - tabs
+      - linkcard
+  - label: "Sidebar Navigation Settings"
+    name: "sidebar"
+    widget: "object"
+    collapsed: false
+    required: false
     fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-        required: true
-      - label: "Description"
-        name: "description"
-        widget: "string"
-        required: false
-      - label: "Sidebar Navigation Settings"
-        name: "sidebar"
+      - { label: "Sort Order", name: "order", widget: "number", value_type: "int", required: false }
+      - label: "Sidebar Badge"
+        name: "badge"
         widget: "object"
         required: false
         collapsed: true
         fields:
-          - label: "Order (Priority in list)"
-            name: "order"
-            widget: "number"
+          - { label: "Badge Text", name: "text", widget: "string", required: false }
+          - label: "Badge Color"
+            name: "variant"
+            widget: "select"
             required: false
-          - label: "Sidebar Badge"
-            name: "badge"
-            widget: "object"
-            required: false
-            collapsed: true
-            fields:
-              - { label: "Badge Text", name: "text", widget: "string", required: false }
-              - label: "Badge Color"
-                name: "variant"
-                widget: "select"
-                required: false
-                default: "default"
-                options:
-                  - { label: "Default", value: "default" }
-                  - { label: "Tip (Purple)", value: "tip" }
-                  - { label: "Success (Green)", value: "success" }
-                  - { label: "Note (Blue)", value: "note" }
-                  - { label: "Caution (Orange)", value: "caution" }
-                  - { label: "Danger (Red)", value: "danger" }
-          - label: "Hide from Sidebar"
-            name: "hidden"
-            widget: "boolean"
-            default: false
-            required: false
-      - label: "Content"
-        name: "body"
-        widget: "markdown"
-        required: true
-        editor_components:
-          - image
-          - code-block
-          - aside
-          - steps
-          - filetree
-          - badge
-          - tabs
-          - linkcard
+            default: "default"
+            options:
+              - { label: "Default", value: "default" }
+              - { label: "Tip (Purple)", value: "tip" }
+              - { label: "Success (Green)", value: "success" }
+              - { label: "Note (Blue)", value: "note" }
+              - { label: "Caution (Orange)", value: "caution" }
+              - { label: "Danger (Red)", value: "danger" }
+      - { label: "Hide from Sidebar", name: "hidden", widget: "boolean", default: false, required: false }
+
+collections:
+  - name: "docs_root"
+    label: "Docs - Root (Homepage)"
+    label_singular: "Root Page"
+    folder: "src/content/docs"
+    extension: "mdx"
+    format: "frontmatter"
+    create: false
+    delete: false
+    summary: "{{title}}"
+    fields: *DOCS_FIELDS
+
+  - name: "getting-started"
+    label: "1. Getting Started"
+    folder: "src/content/docs/getting-started"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    fields: *DOCS_FIELDS
+
+  - name: "features"
+    label: "2. Features"
+    folder: "src/content/docs/features"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    fields: *DOCS_FIELDS
+
+  - name: "productivity"
+    label: "3. Productivity"
+    folder: "src/content/docs/productivity"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    fields: *DOCS_FIELDS
+
+  - name: "account-sync"
+    label: "4. Account & Sync"
+    folder: "src/content/docs/account-sync"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    fields: *DOCS_FIELDS
+
+  - name: "customization"
+    label: "5. Customization"
+    folder: "src/content/docs/customization"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    fields: *DOCS_FIELDS
+
+  - name: "support"
+    label: "6. Support & FAQs"
+    folder: "src/content/docs/support"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    fields: *DOCS_FIELDS
+
