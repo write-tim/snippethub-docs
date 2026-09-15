@@ -3,6 +3,7 @@ title: Installation & Setup
 description: How to install SnippetHub from the Chrome Web Store and configure permissions.
 sidebar:
   order: 2
+  badge: null
   hidden: false
 ---
 
@@ -17,15 +18,17 @@ Setting up SnippetHub takes less than a minute.
 4. Click the puzzle icon in the top right of Chrome and pin **SnippetHub** to your browser toolbar for quick access.
 </Steps>
 
-Developer Installation (Unpacked Extension)
+## Developer Installation (Unpacked Extension)
 
 If you are developing SnippetHub or testing custom builds:
 
+<Steps>
 1. Clone or download the SnippetHub repository from [GitHub](https://github.com/tmj51578/snippethub).
 2. Run `npm install && npm run build` to compile the bundles.
 3. Open Google Chrome and navigate to `chrome://extensions/`.
 4. Enable **Developer mode** using the toggle switch in the top-right corner.
 5. Click **Load unpacked** and select the root project directory containing `manifest.json`.
+</Steps>
 
 ## Understanding Permissions
 
