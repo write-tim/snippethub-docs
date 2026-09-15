@@ -15,7 +15,7 @@ publish_mode: simple
 # Search & display settings
 site_url: https://snippethub-docs.awesomediscoveryzone.com/
 display_url: https://snippethub-docs.awesomediscoveryzone.com/
-logo_url: /images/icon48.png
+logo_url: /images/snippethub.svg
 
 collections:
   - name: docs

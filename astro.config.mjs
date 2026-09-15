@@ -11,10 +11,10 @@ export default defineConfig({
       title: 'SnippetHub Support',
       description: 'Official documentation and support portal for SnippetHub - Text Snippet Manager for Chrome',
       logo: {
-        src: './src/assets/logo.png',
+        src: './src/assets/snippethub.svg',
         replacesTitle: false,
       },
-      favicon: '/favicon.png',
+      favicon: '/favicon.svg',
       social: {
         github: 'https://github.com/write-tim/snippethub-docs',
       },
