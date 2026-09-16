@@ -2,7 +2,10 @@
 title: Cloud Sync, Backups & Vault Export
 description: Synchronize snippets across devices with Firebase, export Obsidian-compatible PKZIP vaults, and create multi-format backups.
 sidebar:
+  label: ''
   order: 1
+  badge: null
+  hidden: false
 ---
 
 SnippetHub combines real-time cloud synchronization with comprehensive data ownership. You can seamlessly synchronize your library across workstations or export your entire knowledge base into open, portable formats.
@@ -12,9 +15,12 @@ SnippetHub combines real-time cloud synchronization with comprehensive data owne
 SnippetHub uses an offline-first Firebase backend to securely store and sync your snippets in the cloud.
 
 ### Signing In
+
+<Steps>
 1. Open the SnippetHub side panel.
 2. Click **Sign In with Google** for instant single-sign-on using your active browser account, or use **Email and Password**.
 3. Once authenticated, your snippets, folders, custom emojis, color accents, tag colors, and drag-and-drop order sync across every Chrome installation where you are signed in.
+</Steps>
 
 ### Focus-Driven Sync & Offline Resilience
 - **Offline-First**: All snippets are cached in Chrome's local storage. You can create, edit, search, and copy snippets without an active internet connection.
@@ -84,10 +90,12 @@ Export your entire library from the user avatar menu under **Data**:
 
 You can export a targeted subset of your library rather than everything:
 
+<Steps>
 1. Click the **Bulk Edit** button in the list header (or hold `Shift` while clicking snippet cards).
 2. Select the specific snippets you wish to export.
 3. In the floating **Bulk Action Bar**, click **Export**.
 4. Choose **Export as Vault (.zip)**, **JSON**, **Markdown**, or **CSV**. Only your selected items will be bundled and downloaded.
+</Steps>
 
 ---
 
@@ -95,7 +103,9 @@ You can export a targeted subset of your library rather than everything:
 
 To restore your snippets or migrate from another device:
 
+<Steps>
 1. Click your avatar icon in the top-right corner of the side panel.
 2. Under the **Data** section, select **Import from JSON...**.
 3. Choose your SnippetHub JSON backup file.
 4. SnippetHub safely parses and imports your snippets, folders, and metadata, merging new items without overwriting your existing library.
+</Steps>
