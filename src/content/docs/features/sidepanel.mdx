@@ -81,3 +81,21 @@ Select multiple snippets simultaneously to organize your library in seconds:
    - **Tag**: Add new tags across all selected snippets.
    - **Export**: Export only the selected subset as **JSON**, **Markdown (.md)**, **CSV**, or **Vault (.zip)**.
    - **Delete**: Batch delete selected snippets with a single confirmation.
+
+## macOS-Style "Quick Look" Preview (`Spacebar`)
+
+Quickly inspect the full contents, code formatting, and metadata of any snippet without altering card expansion states or leaving your current scroll position:
+
+- **Trigger with Spacebar**: Select any snippet card with the `↑`/`↓` arrow keys and press <kbd>Spacebar</kbd>, or choose **Quick Look** from the snippet dropdown menu (`⋮`).
+- **Spotlight-Style Modal**: A translucent glassmorphism preview opens immediately, displaying:
+  - Full title and assigned folder badge (with customized folder icon and accent color).
+  - Assigned trigger keyword chip (e.g. `;sig`).
+  - Total usage counter and syntax-highlighted code blocks (via Highlight.js).
+  - Clean rendered HTML and tag chips with custom tag colors.
+- **Continuous Keyboard Browsing**:
+  - <kbd>↑</kbd> and <kbd>↓</kbd>: Seamlessly cycle to the previous or next snippet card in real time while keeping the Quick Look window open.
+  - <kbd>C</kbd> or <kbd>Enter</kbd>: Copy snippet to clipboard as rich HTML + plaintext.
+  - <kbd>I</kbd>: Insert snippet directly into the active browser input or editor.
+  - <kbd>E</kbd>: Open snippet directly in the side panel editor.
+  - <kbd>Spacebar</kbd> or <kbd>Esc</kbd>: Dismiss Quick Look and return to the list.
+

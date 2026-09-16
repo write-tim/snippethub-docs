@@ -66,3 +66,36 @@ To maximize speed and avoid collisions with regular typing:
    - `;c...` for code snippets (`;clog`, `;cfetch`, `;csql`)
    - `;u...` for URLs and links (`;uzoom`, `;ugh`, `;udocs`)
 
+## Floating Autocomplete / Suggestion Pill (Ghost Text)
+
+Never remember the exact abbreviation again. While typing in any input field or rich editor, SnippetHub projects a smart, floating autocomplete pill directly underneath your typing cursor:
+
+```text
+ Dear Alex,
+ ;si█
+ ┌──────────────────────────────────────────────┐
+ │ ;sig       Standard Signature      Best, Tim │
+ │ ;sign      Short Signature        Thanks, ...│
+ │ ;sigphone  Signature with Phone   Best, +1...│
+ ├──────────────────────────────────────────────┤
+ │ ↑↓ navigate               Tab or ↵ to expand │
+ └──────────────────────────────────────────────┘
+```
+
+### Key Features & Workflow
+
+- **Zero Friction Summoning**: Simply type your trigger key followed by one or more letters (e.g., `;s` or `/me`). The suggestion pill automatically calculates your caret coordinates and floats right beside your cursor.
+- **Smart Ranked Matches**:
+  1. Exact keyword match
+  2. Keyword prefix match
+  3. Pinned snippets
+  4. Favorites
+  5. Title prefix and substring matches
+- **Snippet Previews**: Each suggestion row displays the assigned trigger keyword chip, the snippet title, and an instant preview snippet of the underlying text.
+- **Lightning Keyboard Navigation**:
+  - <kbd>↑</kbd> and <kbd>↓</kbd>: Navigate through candidate snippets.
+  - <kbd>Tab</kbd> or <kbd>Enter</kbd>: Instantly accept the highlighted snippet, replacing your typed trigger word and resolving all dynamic placeholders.
+  - <kbd>Esc</kbd> or click outside: Dismiss the pill cleanly and continue typing standard text.
+- **Full Editor Compatibility**: Works flawlessly in standard text inputs, multiline textareas, and rich `contenteditable` environments like Gmail, Notion, Slack, Zendesk, and GitHub.
+
+
