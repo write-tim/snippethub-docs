@@ -5,41 +5,64 @@ sidebar:
   order: 1
 ---
 
-The **Side Panel** is the primary command center for SnippetHub. Built natively on Chrome's Side Panel API, it stays persistently docked alongside your web pages, allowing you to browse, search, edit, organize, and copy snippets without popping open floating windows or switching tabs.
+The **Side Panel** is the primary command center for SnippetHub. Built natively on Chrome's Side Panel API, it stays persistently docked alongside your web pages, allowing you to browse, search, edit, organize, and copy snippets without popping open floating windows or switching tabs. When you need extra screen space, it can also seamlessly pop out into a dedicated floating window.
+
+![SnippetHub Main Interface](/images/snippethub-main-view.jpg)
 
 ## Interface Overview
 
 ```text
-┌──────────────────────────────────────────────┐
-│  [Logo] SnippetHub        [Tour] [?] [Avatar]│
-│  ┌────────────────────────────────────────┐  │
-│  │ 🔍 Search snippets...            (12) ✕│  │
-│  └────────────────────────────────────────┘  │
-│  [All] [★ Favorites] [🕒 Recent] [📁 No Folder]│
-│  Tags: [#email 8] [#dev 5] [#meeting 3]      │
-│  ──────────────────────────────────────────  │
-│  [↔ Expand All]  [⇅ Sort]  [☑ Bulk]  [📂 Folders]│
-│  ┌────────────────────────────────────────┐  │
-│  │ 📌 Customer Intro Email                │  │
-│  │    ;intro • Templates • #email #client │  │
-│  │    [Copy] [Insert] [✎ Edit] [⋮ More]   │  │
-│  └────────────────────────────────────────┘  │
-│  [ + Add New Snippet ]                       │
-└──────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────┐
+│  [Logo] SnippetHub          [☁ Sync] [⧉ Pop Out] [Avatar]│
+│  ┌──────────────────────────────────────────────────┐  │
+│  │ 🔍 Search snippets...                      (12) ✕│  │
+│  └──────────────────────────────────────────────────┘  │
+│  [All] [★ Favorites] [🕒 Recent] [📁 No Folder]         │
+│  Tags: [#email 8] [#dev 5] [#meeting 3]                │
+│  ────────────────────────────────────────────────────  │
+│  [↔ Expand All]  [⇅ Sort]  [☑ Bulk]  [📂 Folders]      │
+│  ┌──────────────────────────────────────────────────┐  │
+│  │ 📌 Customer Intro Email                          │  │
+│  │    ;intro • Templates • #email #client           │  │
+│  │    [Copy] [Insert] [✎ Edit] [⋮ More]             │  │
+│  └──────────────────────────────────────────────────┘  │
+│  [ + Add New Snippet ]                                 │
+└────────────────────────────────────────────────────────┘
 ```
 
-## Avatar Menu Quick Settings Dropdowns
+## Standalone Window Mode ("Pop Out")
 
-Access fast configuration controls directly from the user avatar menu in the top-right corner without navigating to a separate settings page:
+SnippetHub allows you to break out of Chrome's docked side panel into an independent, persistent window whenever you need more room or want to place SnippetHub on a secondary monitor:
 
-- **Theme Select**: Switch instantly between `Light`, `Dark`, `Solarized`, and `Monokai`.
-- **Layout Density Select**: Choose between `Comfortable` (spacious cards), `Compact` (high-density list for large libraries), or `Spacious`.
-- **Trigger Key Select**: Choose your keyword auto-expansion trigger character (`;`, `/`, `!`, `,`, `@`, `#`, `:`, `~`).
-- **Right-Click Action Select**: Configure browser context menu behavior:
-  - `Auto-Save`: Instantly saves selected text as a new snippet in the background.
-  - `Open Form`: Opens the side panel with the highlighted text prefilled in the editor.
+- **Pop Out to Window (`⧉`)**: Click the pop-out icon in the top-right header (to the left of your avatar). SnippetHub launches as a clean, floating `900x750px` application window and automatically closes the side panel to keep your browser view clear.
+- **Pop Back In to Sidebar (`↘`)**: When working in windowed mode, the header icon transforms into a pop-in button (`Pop in to sidebar`). Clicking it focuses your active Chrome browser window, re-opens the native Side Panel, and dismisses the popup window.
+- **Shared State & Real-Time Sync**: Both the side panel and popup window run against the same background service worker. Your Firebase authentication, live Firestore sync, local cache, clipboard history, and search queries remain perfectly in sync.
+- **Adaptive Padding & Layout**: Universal box-sizing ensures that padding remains balanced and symmetrical (16px on all sides) whether you keep SnippetHub as a narrow sidebar or resize the standalone window across a 4K display.
+
+## Account & Settings Menu
+
+Hovering over the profile avatar displays the **Account & Settings** tooltip. Clicking the avatar opens a dropdown organized into 5 functional sections:
+
+- **Account Profile**: Displays your active account email address, with quick links to **Change Password**, **Sign Out**, and **Delete Account**.
+- **Productivity Tools**:
+  - **Command Palette (`⌘K` / `Ctrl+K`)**: Rapidly search and deploy snippets using a floating modal.
+  - **Keyboard Shortcuts (`?`)**: Full interactive cheat sheet of hotkeys.
+  - **Snippets Dashboard**: Visual analytics, typing time saved, and activity streak tracker.
+- **Customization**:
+  - **Category Colors**: Assign custom palette colors to your snippet categories.
+  - **Theme Select**: Switch instantly between `Light`, `Dark`, `Solarized`, and `Monokai`.
+  - **Layout Density**: Choose between `Comfortable` (default), `Compact` (high-density list for large libraries), or `Spacious`.
+  - **Trigger Key Select**: Choose your keyword auto-expansion trigger character (`;`, `/`, `!`, `,`, `@`, `#`, `:`, `~`).
+  - **Right-Click Action**: Configure context menu behavior (`Auto-Save` selected text or `Open Form` prefilled).
+- **Data Management**:
+  - **Import from JSON**: Restore or merge snippets from a JSON backup.
+  - **Export to JSON / Markdown**: Export backups in open text formats.
+  - **Export Vault (.zip)**: Generate an Obsidian- and Notion-compatible Markdown knowledge vault with YAML frontmatter.
+- **Support & Feedback**: Direct link to the official documentation portal and Buy Me a Coffee support page.
 
 ## Search Bar & Real-Time Match Counter
+
+![SnippetHub Search and Match Counter](/images/snippethub-search.jpg)
 
 - **Fuzzy Search**: Powered by Fuse.js with instant title, tag, and content matching. Press `/` or `⌘F` / `Ctrl+F` from anywhere in the panel to focus.
 - **Live Match Counter**: Displays the exact number of matching snippets (e.g., `5 matches`) next to the clear button.
