@@ -2,33 +2,15 @@
 title: The Chrome Side Panel
 description: Pin, organize, and interact with your snippets without leaving your current webpage.
 sidebar:
+  label: ''
   order: 1
+  badge: null
+  hidden: false
 ---
 
-The **Side Panel** is the primary command center for SnippetHub. Built natively on Chrome's Side Panel API, it stays persistently docked alongside your web pages, allowing you to browse, search, edit, organize, and copy snippets without popping open floating windows or switching tabs. When you need extra screen space, it can also seamlessly pop out into a dedicated floating window.
+The **Side Panel** is SnippetHub's primary command center. Built natively on Chrome's Side Panel API, it stays docked alongside your web pages, letting you browse, search, edit, organize, and copy snippets without opening floating windows or switching tabs. When you need extra screen space, it can also seamlessly pop out into a dedicated floating window.
 
-![SnippetHub Main Interface](/images/snippethub-main-view.jpg)
-
-## Interface Overview
-
-```text
-┌────────────────────────────────────────────────────────┐
-│  [Logo] SnippetHub          [☁ Sync] [⧉ Pop Out] [Avatar]│
-│  ┌──────────────────────────────────────────────────┐  │
-│  │ 🔍 Search snippets...                      (12) ✕│  │
-│  └──────────────────────────────────────────────────┘  │
-│  [All] [★ Favorites] [🕒 Recent] [📁 No Folder]         │
-│  Tags: [#email 8] [#dev 5] [#meeting 3]                │
-│  ────────────────────────────────────────────────────  │
-│  [↔ Expand All]  [⇅ Sort]  [☑ Bulk]  [📂 Folders]      │
-│  ┌──────────────────────────────────────────────────┐  │
-│  │ 📌 Customer Intro Email                          │  │
-│  │    ;intro • Templates • #email #client           │  │
-│  │    [Copy] [Insert] [✎ Edit] [⋮ More]             │  │
-│  └──────────────────────────────────────────────────┘  │
-│  [ + Add New Snippet ]                                 │
-└────────────────────────────────────────────────────────┘
-```
+![SnippetHub Main Interface](/images/SnippetHub.png)
 
 ## Standalone Window Mode ("Pop Out")
 
@@ -37,7 +19,7 @@ SnippetHub allows you to break out of Chrome's docked side panel into an indepen
 - **Pop Out to Window (`⧉`)**: Click the pop-out icon in the top-right header (to the left of your avatar). SnippetHub launches as a clean, floating `900x750px` application window and automatically closes the side panel to keep your browser view clear.
 - **Pop Back In to Sidebar (`↘`)**: When working in windowed mode, the header icon transforms into a pop-in button (`Pop in to sidebar`). Clicking it focuses your active Chrome browser window, re-opens the native Side Panel, and dismisses the popup window.
 - **Shared State & Real-Time Sync**: Both the side panel and popup window run against the same background service worker. Your Firebase authentication, live Firestore sync, local cache, clipboard history, and search queries remain perfectly in sync.
-- **Adaptive Padding & Layout**: Universal box-sizing ensures that padding remains balanced and symmetrical (16px on all sides) whether you keep SnippetHub as a narrow sidebar or resize the standalone window across a 4K display.
+- **Adaptive Padding & Layout**: Universal box-sizing keeps padding balanced and symmetrical (16px on all sides), whether you keep SnippetHub as a narrow sidebar or resize the standalone window across a 4K display.
 
 ## Account & Settings Menu
 
@@ -45,24 +27,22 @@ Hovering over the profile avatar displays the **Account & Settings** tooltip. Cl
 
 - **Account Profile**: Displays your active account email address, with quick links to **Change Password**, **Sign Out**, and **Delete Account**.
 - **Productivity Tools**:
-  - **Command Palette (`⌘K` / `Ctrl+K`)**: Rapidly search and deploy snippets using a floating modal.
-  - **Keyboard Shortcuts (`?`)**: Full interactive cheat sheet of hotkeys.
-  - **Snippets Dashboard**: Visual analytics, typing time saved, and activity streak tracker.
+    - **Command Palette (`⌘K` / `Ctrl+K`)**: Rapidly search and deploy snippets using a floating modal.
+    - **Keyboard Shortcuts (`?`)**: Full interactive cheat sheet of hotkeys.
+    - **Snippets Dashboard**: Visual analytics, typing time saved, and activity streak tracker.
 - **Customization**:
-  - **Category Colors**: Assign custom palette colors to your snippet categories.
-  - **Theme Select**: Switch instantly between `Light`, `Dark`, `Solarized`, and `Monokai`.
-  - **Layout Density**: Choose between `Comfortable` (default), `Compact` (high-density list for large libraries), or `Spacious`.
-  - **Trigger Key Select**: Choose your keyword auto-expansion trigger character (`;`, `/`, `!`, `,`, `@`, `#`, `:`, `~`).
-  - **Right-Click Action**: Configure context menu behavior (`Auto-Save` selected text or `Open Form` prefilled).
+    - **Category Colors**: Assign custom palette colors to your snippet categories.
+    - **Theme Select**: Switch instantly between `Light`, `Dark`, `Solarized`, and `Monokai`.
+    - **Layout Density**: Choose between `Comfortable` (default), `Compact` (high-density list for large libraries), or `Spacious`.
+    - **Trigger Key Select**: Choose your keyword auto-expansion trigger character (`;`, `/`, `!`, `,`, `@`, `#`, `:`, `~`).
+    - **Right-Click Action**: Configure context menu behavior (`Auto-Save` selected text or `Open Form` prefilled).
 - **Data Management**:
-  - **Import from JSON**: Restore or merge snippets from a JSON backup.
-  - **Export to JSON / Markdown**: Export backups in open text formats.
-  - **Export Vault (.zip)**: Generate an Obsidian- and Notion-compatible Markdown knowledge vault with YAML frontmatter.
+    - **Import from JSON**: Restore or merge snippets from a JSON backup.
+    - **Export to JSON / Markdown**: Export backups in open text formats.
+    - **Export Vault (.zip)**: Generate an Obsidian- and Notion-compatible Markdown knowledge vault with YAML frontmatter.
 - **Support & Feedback**: Direct link to the official documentation portal and Buy Me a Coffee support page.
 
 ## Search Bar & Real-Time Match Counter
-
-![SnippetHub Search and Match Counter](/images/snippethub-search.jpg)
 
 - **Fuzzy Search**: Powered by Fuse.js with instant title, tag, and content matching. Press `/` or `⌘F` / `Ctrl+F` from anywhere in the panel to focus.
 - **Live Match Counter**: Displays the exact number of matching snippets (e.g., `5 matches`) next to the clear button.
@@ -73,10 +53,10 @@ Hovering over the profile avatar displays the **Account & Settings** tooltip. Cl
 ## Quick Filter Chips & Interactive Tag Bar
 
 - **Quick Filter Chips**: Filter your visible snippets in one click:
-  - `All`: View your entire library.
-  - `Favorites`: Filter to starred snippets.
-  - `Recent`: Filter to snippets copied or modified recently.
-  - `No Folder`: Isolate uncategorized snippets for quick organization.
+    - `All`: View your entire library.
+    - `Favorites`: Filter to starred snippets.
+    - `Recent`: Filter to snippets copied or modified recently.
+    - `No Folder`: Isolate uncategorized snippets for quick organization.
 - **Interactive Tag Bar**: Horizontally scrollable tag chips displaying tag frequencies (e.g., `#email (8)`). Clicking any tag filters the list and displays an active tag filter badge.
 - **Active Filter Pills**: Displays active search terms, selected folder, tag filter, and sort mode with a quick `✕` to clear individual filters.
 
@@ -86,11 +66,11 @@ Hovering over the profile avatar displays the **Account & Settings** tooltip. Cl
 - **Pinned Partitioning**: Pinned snippets remain firmly grouped at the top of your list. Manual drag-and-drop order is preserved within both the pinned section and the unpinned section.
 - **Session & Cloud Persistence**: Your custom drag-and-drop order is saved to local storage and synchronized with your Firebase account across restarts and devices.
 - **Sort Modes**: Use the sort dropdown to switch between:
-  - `Default` (Your custom drag-and-drop order)
-  - `Title A-Z`
-  - `Title Z-A`
-  - `Most Used`
-  - `Recently Used`
+    - `Default` (Your custom drag-and-drop order)
+    - `Title A-Z`
+    - `Title Z-A`
+    - `Most Used`
+    - `Recently Used`
 
 ## Batch Selection & Floating Bulk Action Bar
 
@@ -99,11 +79,11 @@ Select multiple snippets simultaneously to organize your library in seconds:
 1. Click the **Bulk Edit** button in the list header, or hold `Shift` while clicking snippet cards.
 2. Checkboxes appear on every snippet card.
 3. The floating **Bulk Action Bar** appears at the bottom of the list:
-   - **Select All**: Check or uncheck all visible snippets.
-   - **Move**: Move selected snippets to a target folder in one click.
-   - **Tag**: Add new tags across all selected snippets.
-   - **Export**: Export only the selected subset as **JSON**, **Markdown (.md)**, **CSV**, or **Vault (.zip)**.
-   - **Delete**: Batch delete selected snippets with a single confirmation.
+    - **Select All**: Check or uncheck all visible snippets.
+    - **Move**: Move selected snippets to a target folder in one click.
+    - **Tag**: Add new tags across all selected snippets.
+    - **Export**: Export only the selected subset as **JSON**, **Markdown (.md)**, **CSV**, or **Vault (.zip)**.
+    - **Delete**: Batch delete selected snippets with a single confirmation.
 
 ## macOS-Style "Quick Look" Preview (`Spacebar`)
 
@@ -111,14 +91,13 @@ Quickly inspect the full contents, code formatting, and metadata of any snippet 
 
 - **Trigger with Spacebar**: Select any snippet card with the `↑`/`↓` arrow keys and press <kbd>Spacebar</kbd>, or choose **Quick Look** from the snippet dropdown menu (`⋮`).
 - **Spotlight-Style Modal**: A translucent glassmorphism preview opens immediately, displaying:
-  - Full title and assigned folder badge (with customized folder icon and accent color).
-  - Assigned trigger keyword chip (e.g. `;sig`).
-  - Total usage counter and syntax-highlighted code blocks (via Highlight.js).
-  - Clean rendered HTML and tag chips with custom tag colors.
+    - Full title and assigned folder badge (with customized folder icon and accent color).
+    - Assigned trigger keyword chip (e.g. `;sig`).
+    - Total usage counter and syntax-highlighted code blocks (via Highlight.js).
+    - Clean rendered HTML and tag chips with custom tag colors.
 - **Continuous Keyboard Browsing**:
-  - <kbd>↑</kbd> and <kbd>↓</kbd>: Seamlessly cycle to the previous or next snippet card in real time while keeping the Quick Look window open.
-  - <kbd>C</kbd> or <kbd>Enter</kbd>: Copy snippet to clipboard as rich HTML + plaintext.
-  - <kbd>I</kbd>: Insert snippet directly into the active browser input or editor.
-  - <kbd>E</kbd>: Open snippet directly in the side panel editor.
-  - <kbd>Spacebar</kbd> or <kbd>Esc</kbd>: Dismiss Quick Look and return to the list.
-
+    - <kbd>↑</kbd> and <kbd>↓</kbd>: Seamlessly cycle to the previous or next snippet card in real time while keeping the Quick Look window open.
+    - <kbd>C</kbd> or <kbd>Enter</kbd>: Copy snippet to clipboard as rich HTML + plaintext.
+    - <kbd>I</kbd>: Insert snippet directly into the active browser input or editor.
+    - <kbd>E</kbd>: Open snippet directly in the side panel editor.
+    - <kbd>Spacebar</kbd> or <kbd>Esc</kbd>: Dismiss Quick Look and return to the list.
