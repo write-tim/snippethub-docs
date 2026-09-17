@@ -14,9 +14,9 @@ SnippetHub combines real-time cloud synchronization with comprehensive data owne
 
 SnippetHub uses an offline-first Firebase backend to securely store and sync your snippets in the cloud.
 
-![SnippetHub Sign In Screen](/images/snippethub-signin.jpg)
-
 ### Authentication Options
+
+![SnippetHub Sign In Screen](/images/SnippetHub_Signin.png)
 
 SnippetHub gives you flexible, privacy-respecting sign-in choices:
 
@@ -29,11 +29,12 @@ SnippetHub gives you flexible, privacy-respecting sign-in choices:
 Once authenticated, your snippets, folders, custom emojis, color accents, tag colors, and drag-and-drop ordering sync continuously across every Chrome installation where you are signed in.
 
 ### Focus-Driven Sync & Offline Resilience
-- **Offline-First**: All snippets are cached in Chrome's local storage. You can create, edit, search, and copy snippets without an active internet connection.
+
+- **Offline-First**: SnippetHub caches all snippets in Chrome's local storage. You can create, edit, search, and copy snippets without an active internet connection.
 - **Focus-Driven Refresh**: Whenever you switch tabs or open the side panel, SnippetHub verifies cache freshness with the background service worker, ensuring instant updates if snippets were added or modified on another computer.
 - **Order Persistence**: Your custom drag-and-drop ordering and sort mode preferences are persisted and synced across login sessions.
 
----
+***
 
 ## Vault Export (.zip) — Obsidian & Notion Compatible
 
@@ -75,18 +76,19 @@ Welcome to **SnippetHub**! We are thrilled to have you on board.
 ```
 
 ### Benefits of Vault Export
+
 - **Zero Lock-In**: Drag the unzipped folder directly into Obsidian or import it into Notion to use your snippets as a permanent local wiki.
 - **Preserved Timestamps**: Internal MS-DOS file timestamps in the ZIP match your snippet's `updatedAt` and `createdAt` dates.
 - **Safe Filenames**: Special characters (like slashes, colons, and question marks) are automatically sanitized, and identical titles receive unique suffixes to avoid file overwrites.
 
----
+***
 
 ## Multiple Export Formats
 
 Export your entire library from the user avatar menu under **Data**:
 
 | Format | File Extension | Details |
-| :--- | :--- | :--- |
+| --- | --- | --- |
 | **Vault (.zip)** | `.zip` | Hierarchical folder structure of individual Markdown files with YAML frontmatter. |
 | **JSON** | `.json` | Complete programmatic backup including snippets, folder metadata (emojis & color swatches), custom tag colors, and UI preferences. |
 | **Markdown** | `.md` | A single compiled Markdown file with horizontal rule separators and frontmatter headers. |
@@ -103,7 +105,7 @@ You can export a targeted subset of your library rather than everything:
 4. Choose **Export as Vault (.zip)**, **JSON**, **Markdown**, or **CSV**. Only your selected items will be bundled and downloaded.
 </Steps>
 
----
+***
 
 ## Importing Backups
 
