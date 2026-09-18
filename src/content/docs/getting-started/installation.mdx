@@ -20,16 +20,24 @@ Setting up SnippetHub takes less than a minute.
 
 ## Understanding Permissions
 
-SnippetHub requests the minimum necessary permissions to provide a seamless snippet experience:
+When installing SnippetHub, Chrome displays a standard permissions confirmation prompt. SnippetHub strictly requests the minimum necessary permissions required to expand snippets, sync across devices, and streamline your workflow:
 
 | Permission | Why It's Needed |
 | --- | --- |
-| `sidePanel` | Displays the SnippetHub interface docked on the side of your browser. |
-| `storage` | Stores your snippets, settings, folders, and preferences locally. |
-| `contextMenus` | Adds the "Save selection to SnippetHub" option on highlighted webpage text. |
-| `clipboardRead` | Allows resolving dynamic `{{clipboard}}` placeholders and copying snippets to your clipboard. |
-| `identity` | Enables secure one-click sign-in with your Google account for cloud synchronization. |
-| `notifications` | Notifies you when snippets are successfully saved, imported, or synchronized. |
+| `sidePanel` | Docks SnippetHub directly in Chrome's native side panel alongside your active tabs, with support for popping out into a standalone companion window. |
+| `storage` | Stores your snippets, folder hierarchies, custom tags, sorting preferences, and local settings securely on your device. |
+| `clipboardWrite` | Copies formatted rich HTML and plain text snippets directly to your system clipboard when you click **Copy** or press quick shortcuts (<kbd>C</kbd> / <kbd>Enter</kbd>). |
+| `clipboardRead` | Allows snippets containing dynamic `{{clipboard}}` variable placeholders to insert your current copied text during expansion. |
+| `scripting` | Automatically activates the text expansion and autocomplete engine in existing open browser tabs upon installation or update, without requiring you to manually refresh each page. |
+| `contextMenus` | Adds a right-click **"Add to Snippets"** option when highlighting text on any webpage for quick clipping. |
+| `offscreen` | Powers secure Firebase user authentication and real-time Firestore database synchronization in an isolated background DOM without impacting browser performance. |
+| `identity` | Enables fast, one-click OAuth sign-in with your Google account for cross-device cloud synchronization. |
+| `notifications` | Delivers status updates when background cloud synchronization completes or if sync conflicts arise. |
+| Webpage Access (`<all_urls>`) | Listens for your custom trigger abbreviations (e.g. `;sig` or `/meeting`) and positions the smart floating autocomplete suggestion pill directly next to your typing cursor across text inputs, textareas, and rich web editors (Gmail, Slack, Notion, Google Docs). |
+
+:::tip[Privacy & Data Security First]
+SnippetHub is built offline-first. Your keystrokes, browsing history, and snippet contents are **never tracked, recorded, or sold**. Webpage access is used strictly to detect your explicit abbreviation triggers and insert your snippet content directly where your cursor is focused.
+:::
 
 ## Next Steps
 
