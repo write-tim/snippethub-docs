@@ -56,9 +56,9 @@
     "file": "features/text-expansion.mdx"
   },
   {
-    "title": "Rich Text & Code Formatting",
+    "title": "Rich Text, HTML & Markdown Formatting",
     "route": "/features/rich-text-and-code/",
-    "desc": "Author formatted text with Quill and syntax-highlighted code blocks with Highlight.js.",
+    "desc": "Author formatted snippets using Visual WYSIWYG, Raw HTML, or Markdown modes, and understand how multi-MIME copying works across apps.",
     "category": "2. Features",
     "file": "features/rich-text-and-code.mdx"
   },

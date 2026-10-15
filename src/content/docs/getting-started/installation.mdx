@@ -36,7 +36,11 @@ When installing SnippetHub, Chrome displays a standard permissions confirmation 
 | Webpage Access (`<all_urls>`) | Listens for your custom trigger abbreviations (e.g. `;sig` or `/meeting`) and positions the smart floating autocomplete suggestion pill directly next to your typing cursor across text inputs, textareas, and rich web editors (Gmail, Slack, Notion, Google Docs). |
 
 :::tip[Privacy & Data Security First]
-SnippetHub is built offline-first. Your keystrokes, browsing history, and snippet contents are **never tracked, recorded, or sold**. Webpage access is used strictly to detect your explicit abbreviation triggers and insert your snippet content directly where your cursor is focused.
+SnippetHub is built offline-first and engineered with strict defense-in-depth principles:
+- **Zero Tracking**: Your keystrokes, browsing history, and snippet contents are **never tracked, recorded, or sold**.
+- **Password & Sensitive Input Exclusions**: SnippetHub automatically ignores password fields (`type="password"`), hidden inputs, and credit card numbers (`autocomplete="cc-*"`).
+- **In-Page XSS Defense**: All rich text content is strictly sanitized before in-page insertion, preventing Cross-Site Scripting.
+- **Privilege Separation**: Content scripts running in web pages are isolated from database and authentication controls.
 :::
 
 ## Next Steps

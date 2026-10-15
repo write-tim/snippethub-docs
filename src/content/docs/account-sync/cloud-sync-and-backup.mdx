@@ -31,7 +31,8 @@ Once authenticated, your snippets, folders, custom emojis, color accents, tag co
 ### Focus-Driven Sync & Offline Resilience
 
 - **Offline-First**: SnippetHub caches all snippets in Chrome's local storage. You can create, edit, search, and copy snippets without an active internet connection.
-- **Focus-Driven Refresh**: Whenever you switch tabs or open the side panel, SnippetHub verifies cache freshness with the background service worker, ensuring instant updates if snippets were added or modified on another computer.
+- **Instant Local Broadcast**: When you create, edit, or reorder snippets in one tab or the standalone companion window, changes are immediately broadcast to all other open tabs in 0ms via `chrome.storage.onChanged`.
+- **Intelligent Focus Refresh**: When returning to your browser from another device, SnippetHub verifies cache freshness with the background service worker using a 5-minute cooldown timer. This eliminates redundant database queries and extends laptop battery life while keeping your multi-device library up to date.
 - **Order Persistence**: Your custom drag-and-drop ordering and sort mode preferences are persisted and synced across login sessions.
 
 ***
@@ -94,6 +95,10 @@ Export your entire library from the user avatar menu under **Data**:
 | **Markdown** | `.md` | A single compiled Markdown file with horizontal rule separators and frontmatter headers. |
 | **CSV** | `.csv` | Spreadsheet-ready export containing Title, Category, Tags, Folder, Copy Count, Last Used timestamp, and plaintext content. |
 
+:::note[CSV Formula Injection Protection]
+SnippetHub automatically neutralizes CSV formula/command injection (DDE attacks). If a snippet title, folder, or body begins with formula trigger characters (`=`, `+`, `-`, `@`, `\t`, `\r`), SnippetHub safely prepends an apostrophe (`'`) so spreadsheet applications (Excel, Google Sheets, LibreOffice Calc) display the content as pure literal text without executing external macros.
+:::
+
 ### Bulk Subset Export
 
 You can export a targeted subset of your library rather than everything:
@@ -107,7 +112,7 @@ You can export a targeted subset of your library rather than everything:
 
 ***
 
-## Importing Backups
+## Hardened JSON Import
 
 To restore your snippets or migrate from another device:
 
@@ -115,5 +120,24 @@ To restore your snippets or migrate from another device:
 1. Click your avatar icon in the top-right corner of the side panel.
 2. Under the **Data** section, select **Import from JSON...**.
 3. Choose your SnippetHub JSON backup file.
-4. SnippetHub safely parses and imports your snippets, folders, and metadata, merging new items without overwriting your existing library.
+4. SnippetHub safely parses, sanitizes, and imports your snippets, folders, and metadata, merging new items without overwriting your existing library.
 </Steps>
+
+### Import Security Protections
+
+SnippetHub's import parser incorporates multi-layered defensive security checks:
+
+- **Prototype Pollution Defense**: Key sanitization strips `__proto__`, `constructor`, and `prototype` keys from imported folder metadata, category palettes, and tag colors.
+- **Batch Ceiling**: Imports are strictly capped at 500 snippets per file to prevent browser out-of-memory crashes.
+- **File Size Ceiling**: Files larger than 10MB are rejected prior to parsing.
+- **HTML Sanitization**: All incoming snippet HTML content is filtered through a strict allowlist sanitizer, neutralizing `<script>`, `<svg onload>`, inline event handlers, and malicious styles before insertion into your library.
+
+***
+
+## Cloud Security & Multi-Tenant Isolation
+
+SnippetHub's cloud backend is powered by Google Cloud Firestore with production security rules (v2):
+
+- **Strict Identity Enforcement**: Every Firestore document query and mutation is bound to `request.auth.uid == userId`. It is impossible for another user to view, edit, or delete your snippets.
+- **Payload Validation**: Server-side security rules enforce string length constraints, type safety (`is string`, `is list`, `is bool`, `is number`), and an absolute 1MB document ceiling.
+- **Isolated Background Bridge**: Firestore operations run within an isolated extension offscreen document, completely separated from web page content scripts.

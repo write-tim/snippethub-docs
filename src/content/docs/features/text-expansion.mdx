@@ -58,6 +58,20 @@ The SnippetHub expansion engine is engineered to handle modern web applications 
     - **Zendesk, Intercom & Freshdesk**: Accelerates customer support workflows without requiring specialized helpdesk integrations.
     - **GitHub & GitLab**: Works seamlessly in issue descriptions, pull request reviews, and markdown comments.
 
+## Privacy & Sensitive Field Protection
+
+SnippetHub is engineered with strict user privacy guarantees to ensure your passwords and sensitive information are never intercepted or exposed:
+
+- **Password Field Exclusion**: SnippetHub automatically ignores all password input fields (`<input type="password">`). It will never inspect caret text, calculate matching snippets, or trigger expansion inside password inputs.
+- **Hidden & File Inputs**: `<input type="hidden">` and `<input type="file">` elements are strictly excluded.
+- **Credit Card & Financial Inputs**: Form fields marked with `autocomplete="current-password"`, `autocomplete="new-password"`, `autocomplete="cc-number"`, or `autocomplete="credit-card"` are automatically bypassed.
+- **Developer Opt-Out (`data-no-snippets`)**: Web developers can add `data-no-snippets` to any HTML input or editor to instruct SnippetHub to completely disable expansion and autocomplete on that element.
+
+## High-Performance Keystroke Engine
+
+- **Micro-Debounced Caret Matching**: To ensure zero typing latency even when composing long documents, caret text evaluation is debounced by 40ms. Rapid typing remains completely fluid without dropped frames.
+- **Throttled Sync**: In-page keyword caches update in real-time via local storage events without bombarding your network connection or Firestore database.
+
 ## Keyword Best Practices
 
 To maximize speed and avoid collisions with regular typing:

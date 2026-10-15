@@ -12,14 +12,23 @@ The **Side Panel** is SnippetHub's primary command center. Built natively on Chr
 
 ![SnippetHub Main Interface](/images/SnippetHub.png)
 
-## Standalone Window Mode ("Pop Out")
+## Standalone Companion Window ("Pop Out")
 
-SnippetHub allows you to break out of Chrome's docked side panel into an independent, persistent window whenever you need more room or want to place SnippetHub on a secondary monitor:
+SnippetHub allows you to break out of Chrome's docked side panel into an independent, persistent companion window whenever you need more room, want a dedicated side-by-side workflow, or want to place SnippetHub on a secondary monitor:
 
-- **Pop Out to Window (`⧉`)**: Click the pop-out icon in the top-right header (to the left of your avatar). SnippetHub launches as a clean, floating `900x750px` application window and automatically closes the side panel to keep your browser view clear.
-- **Pop Back In to Sidebar (`↘`)**: When working in windowed mode, the header icon transforms into a pop-in button (`Pop in to sidebar`). Clicking it focuses your active Chrome browser window, re-opens the native Side Panel, and dismisses the popup window.
+- **Pop Out to Window (`⧉`)**: Click the pop-out icon in the top-right header (directly to the left of your avatar). SnippetHub launches as a clean, floating companion application window (`450x780px` default) and automatically closes the browser's side panel to keep your browsing area uncluttered.
+- **Pop Back In to Sidebar (`↘`)**: When working in windowed mode, the header icon transforms into a pop-in button (`Pop in to sidebar`). Clicking it focuses your active Chrome browser window, automatically re-opens the native Side Panel, and dismisses the standalone window.
+- **Automatic Bounds & Position Memory**: SnippetHub tracks your window dimensions and screen position as you resize or move it. When you pop out SnippetHub in future sessions, it instantly restores your exact preferred size and monitor placement.
 - **Shared State & Real-Time Sync**: Both the side panel and popup window run against the same background service worker. Your Firebase authentication, live Firestore sync, local cache, clipboard history, and search queries remain perfectly in sync.
-- **Adaptive Padding & Layout**: Universal box-sizing keeps padding balanced and symmetrical (16px on all sides), whether you keep SnippetHub as a narrow sidebar or resize the standalone window across a 4K display.
+- **Ergonomic Responsive Layout**: Universal box-sizing keeps padding balanced and symmetrical (16px on all sides). On ultra-wide or maximized displays, the application view centers gracefully with a maximum width of 780px for optimal readability.
+
+## Snippet Card Ergonomics & Layout
+
+Every snippet card is structured for maximum scanning speed and one-click actions:
+
+- **Grouped Title & Keyword**: The trigger keyword (e.g. `;sig` or `/intro`) is anchored directly beneath the snippet title in both Side Panel and Pop-Out modes, making abbreviations instantly identifiable.
+- **Right-Aligned Quick Actions**: Action buttons (Quick Look, Insert Directly, Copy, and More Options) are pinned to the far right edge of every card across all window widths and density modes.
+- **Visual Folder & Category Accents**: Custom emoji icons, category chips, and color dots provide immediate visual recognition.
 
 ## Account & Settings Menu
 

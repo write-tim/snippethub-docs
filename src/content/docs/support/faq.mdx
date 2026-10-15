@@ -36,11 +36,13 @@ When a snippet contains system tokens like `{{date}}` or `{{time}}`, SnippetHub 
 
 SnippetHub's **Vault Export** produces a standard PKZIP archive organized into folder directories. Each snippet is formatted as an individual Markdown file containing YAML frontmatter (`title`, `category`, `tags`, `keyword`, `folder`, `created`, `updated`, `favorite`, `pinned`). You can unzip the archive directly into your **Obsidian** vault folder or import it into **Notion** or **Logseq** with zero manual formatting required.
 
-### Why do copied snippets preserve formatting in Google Docs, Word, and Slack?
+### How does SnippetHub copy and paste between Rich Text, HTML, and Markdown?
 
-SnippetHub uses modern multi-MIME clipboard copying via `ClipboardItem`. When you copy a snippet, SnippetHub simultaneously writes two payloads to your clipboard:
-1. `text/html`: Used by rich editors (Google Docs, Microsoft Word, Outlook, Gmail, Slack) to preserve formatting, bold text, links, headings, and bullet points.
-2. `text/plain`: Used by code editors, terminals, and standard plaintext fields to paste clean text without HTML markup.
+SnippetHub uses modern multi-MIME clipboard copying via the asynchronous `ClipboardItem` API. When you copy a snippet, SnippetHub simultaneously writes two payloads to your clipboard:
+1. `text/html`: Used by rich editors (Google Docs, Microsoft Word, Outlook, Gmail, Slack, Notion) to preserve formatted bold text, headings, clickable hyperlinks, bulleted lists, and colors.
+2. `text/plain`: Used by code editors (VS Code), terminals, plain text boxes, and Markdown editors (Obsidian, GitHub) to paste clean text or literal Markdown syntax without extraneous HTML markup.
+
+If you authored a snippet in **Markdown** mode, it will paste as clean Markdown in code/terminal environments and as rendered rich text in word processors. To paste without formatting in any rich text app, use <kbd>⌘ + Shift + Option + V</kbd> (Mac) or <kbd>Ctrl + Shift + V</kbd> (Windows/Linux).
 
 ### How does the Daily Activity Streak engine work?
 
@@ -60,7 +62,22 @@ Pinned snippets always stay grouped in the top partition of your list. You can f
 
 ### Can I pop out SnippetHub into a standalone window?
 
-Yes! Click the **Pop out to window** icon (`⧉`) in the top-right header (next to your avatar). SnippetHub will instantly open in an independent `900x750px` popup window and close the side panel. It retains all authentication, synchronization, and clipboard features. When you want to return to the side panel, click the **Pop in to sidebar** icon (`↘`) to re-open the panel and dismiss the popup.
+Yes! Click the **Pop out to window** icon (`⧉`) in the top-right header (directly to the left of your avatar). SnippetHub will launch in an independent companion window (`450x780px` default) and automatically close the side panel. It retains all authentication, synchronization, and clipboard features. SnippetHub remembers your window size and monitor position, automatically restoring your preferred dimensions on future pop-outs. When you want to return to the side panel, click the **Pop in to sidebar** icon (`↘`) to re-open the panel and dismiss the popup.
+
+### How does SnippetHub protect my privacy when typing passwords or credit card numbers?
+
+SnippetHub is built with an automatic sensitive-field exclusion engine. The in-page text expander and floating autocomplete pill will **never** inspect caret position, evaluate keystrokes, or trigger expansions inside:
+- Password input fields (`<input type="password">`)
+- Hidden or file inputs (`type="hidden"`, `type="file"`)
+- Form fields with `autocomplete="current-password"`, `autocomplete="new-password"`, or `autocomplete="cc-*"`
+- Any input or container marked with the `data-no-snippets` attribute.
+
+### How secure is my data in Firebase Cloud Firestore?
+
+Your snippet library is protected by strict Google Cloud Firestore Security Rules (v2):
+- **User-Level Isolation**: Every query and document mutation requires authenticated ownership (`request.auth.uid == userId`). Other users or third parties cannot read, modify, or delete your snippets.
+- **Server-Side Validation**: Firestore enforces size limits (max 1MB per document, max 500 chars per title) and type safety before writes are accepted.
+- **Privilege Separation**: Content scripts running in web pages cannot communicate with Firestore; all database access is mediated through an isolated background service.
 
 ### Can I sign in using an email address instead of Google?
 
