@@ -72,30 +72,45 @@ Supported languages include:
 
 ---
 
-## How Copy & Paste Works (The Dual-MIME Pipeline)
+## How Copy & Paste Works (Multi-Format & Dual-MIME Pipeline)
 
-When you click **Copy** on any snippet card or press <kbd>C</kbd> / <kbd>Enter</kbd> in Quick Look, SnippetHub utilizes the modern **Async Clipboard API** with dual MIME payloads:
+SnippetHub supports **four copy & paste formats** across the entire application—both in the main snippet list and inside the snippet editor:
+
+1. **✨ Rich Text (`rich`)**: Writes dual MIME payloads (`text/html` + `text/plain` fallback) via the modern `ClipboardItem` API so Google Docs, Word, Gmail, Outlook, Notion, and Slack preserve headings, bold/italic styling, clickable links, and lists while plain-text inputs receive clean fallback text.
+2. **📄 Plain Text (`plain`)**: Strips all HTML markup and Markdown syntax, writing strictly unstyled `text/plain` to your clipboard—ideal when pasting into rich text editors without bringing along any source formatting.
+3. **📝 Markdown (`markdown`)**: Automatically converts rich HTML into clean GitHub-Flavored Markdown (`.md`) syntax (`# Headings`, `**bold**`, `[links](url)`, `- lists`) on the fly.
+4. **🌐 HTML (`html`)**: Copies or pastes the raw HTML source code (`<h3>`, `<p>`, `<a href="...">`).
 
 ```text
 SnippetHub Copy Action
        │
-       ├── text/html   ──► Consumed by rich text editors
-       │                   (Gmail, Outlook, Docs, Word, Notion, Slack)
-       │
-       └── text/plain  ──► Consumed by plain text and code environments
-                           (VS Code, Terminal, Textarea, Markdown files)
+       ├── Rich Text (Dual-MIME) ──► text/html + text/plain fallback
+       ├── Plain Text            ──► Strictly unstyled text/plain (all tags stripped)
+       ├── Markdown              ──► Converted GFM syntax (.md)
+       └── HTML                  ──► Raw HTML source markup (</>)
 ```
+
+### Selecting Your Copy or Paste Format
+
+- **Global Default Copy Format**: Click the format indicator (`✨` / `📄` / `📝` / `🌐` / `⚡`) in the list controls bar—or use the **Copy Format** dropdown in the Avatar Settings menu—to set your default one-click copy behavior (`Rich Text`, `Plain Text`, `Markdown`, `HTML`, or `Auto (Mode)`).
+- **Per-Snippet "Copy As" Override**:
+  - **Right-Click the Copy Icon**: Right-click the clipboard button on any snippet card (or the **Copy** button in Quick Look) to open the quick **Copy As...** mini-menu (`Rich Text`, `Plain Text`, `Markdown`, `HTML`).
+  - **Card Menu (`⋮`)**: Open any snippet's action menu and select **Copy as Rich Text**, **Copy as Plain Text**, **Copy as Markdown**, or **Copy as HTML**.
+- **Paste as New Snippet (From Main View)**:
+  - Click the split chevron next to the **+ Add** button at the bottom of the panel to **Paste as Rich Text**, **Paste as Plain Text**, **Paste as Markdown**, or **Paste as HTML**, or press <kbd>⌘V</kbd> / <kbd>Ctrl+V</kbd> while browsing your list to instantly create a new snippet from your clipboard.
+- **In-Editor Copy & Paste Dropdowns**:
+  - Inside the snippet editor header bar, use the **Copy ▾** dropdown (`Copy as Rich Text`, `Copy as Plain Text`, `Copy as Markdown`, `Copy as HTML`) and **Paste ▾** dropdown (`Paste as Rich Text`, `Paste as Plain Text`, `Paste as Markdown`, `Paste as HTML`) to convert content on the fly without switching editor modes.
 
 ### Destination App Behavior Matrix
 
 | Target Application | MIME Type Consumed | What Gets Pasted |
 | :--- | :---: | :--- |
-| **Google Docs & Microsoft Word** | `text/html` | Formatted bold/italic text, headings, clickable links, styled tables, and colors. |
-| **Gmail & Outlook Web** | `text/html` | Complete rich text email layout with working links and bullet points. |
+| **Google Docs & Microsoft Word** | `text/html` (or `text/plain` when copied as Plain Text) | Formatted bold/italic text, headings, clickable links, and lists—or unstyled text when using **Copy as Plain Text**. |
+| **Gmail & Outlook Web** | `text/html` (or `text/plain` when copied as Plain Text) | Complete rich text email layout with working links and bullet points, or clean unformatted text. |
 | **Slack, Teams & Discord** | `text/html` / `text/plain` | Rich message formatting including bold, quotes, and monospaced code. |
-| **VS Code, Sublime, IDEs** | `text/plain` | Clean plain text or literal Markdown syntax without any unwanted `<p>` or `<div>` tags. |
+| **VS Code, Sublime, IDEs** | `text/plain` | Clean plain text, literal Markdown syntax, or raw HTML depending on chosen format. |
 | **macOS Terminal / Linux Bash** | `text/plain` | Pure executable CLI commands without formatting artifacts. |
-| **Obsidian / Logseq / Notion** | `text/html` or `text/plain` | Formatted blocks or Markdown syntax depending on editor paste settings. |
+| **Obsidian / Logseq / Notion** | `text/html` or `text/plain` | Formatted blocks or clean Markdown syntax (`Copy as Markdown`). |
 
 ---
 
@@ -114,10 +129,8 @@ When expanding snippets via keywords (e.g. typing `;sig` followed by Space) or u
 
 ## Tips for Copying & Pasting
 
-:::tip[Pasting as Plain Text When Desired]
-If you are in a rich text application (like Google Docs or Gmail) but want to paste **without** formatting, use your operating system's native paste-as-plain-text shortcut:
-- **Mac**: <kbd>⌘ + Shift + Option + V</kbd>
-- **Windows / Linux**: <kbd>Ctrl + Shift + V</kbd>
+:::tip[One-Click Plain Text Copying]
+Need to paste a formatted snippet into Gmail, Google Docs, or Word without carrying over any fonts, bolding, or links? Right-click the snippet's **Copy** icon and choose **📄 Plain Text** (or set your default copy format to **Plain Text** in the toolbar). You can also use your OS shortcut (<kbd>⌘ + Shift + Option + V</kbd> on Mac or <kbd>Ctrl + Shift + V</kbd> on Windows/Linux).
 :::
 
 :::tip[Exporting Full Markdown Vaults]

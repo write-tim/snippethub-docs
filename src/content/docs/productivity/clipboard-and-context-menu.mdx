@@ -10,21 +10,25 @@ sidebar:
 
 SnippetHub deeply integrates with Chrome's native clipboard and context menu APIs, allowing you to capture ideas on the fly and deploy formatted content with zero friction.
 
-## Multi-MIME Rich Text Clipboard Copy
+## Multi-Format Clipboard Copy & Paste
 
-When you click **Copy** or press `Enter` on a snippet card, SnippetHub utilizes the modern asynchronous Clipboard API with dual MIME payloads:
+When you click **Copy** or press `Enter` / `C` on a snippet card, SnippetHub copies your snippet in your chosen default format—or lets you override the format on the fly:
 
 ```text
 SnippetHub Clipboard Engine
        │
-       ├── text/html   ──► Google Docs, MS Word, Gmail, Outlook, Notion, Slack
-       └── text/plain  ──► Terminals, Code Editors, Plaintext Inputs, Markdown
+       ├── ✨ Rich Text (Dual-MIME) ──► Google Docs, MS Word, Gmail, Outlook, Notion, Slack
+       ├── 📄 Plain Text            ──► Unstyled text/plain (strips all HTML & Markdown tags)
+       ├── 📝 Markdown              ──► Clean GitHub-Flavored Markdown (.md)
+       └── 🌐 HTML                  ──► Raw HTML markup (</>)
 ```
 
-### Why Multi-MIME Matters
+### Multi-Format Copy & Paste Options
 
-- **Rich Text Apps**: When pasting into Google Docs, Word, Outlook, or Slack, all headings, bold/italic formatting, bulleted lists, clickable hyperlinks, and styled code blocks are preserved exactly as designed.
-- **Plaintext & Code Environments**: When pasting into terminals, IDEs, or standard browser `<input>` boxes, SnippetHub automatically provides a clean plain-text/markdown representation without broken tags or extraneous HTML.
+- **Default Copy Format Selector**: Use the format indicator (`✨` / `📄` / `📝` / `🌐` / `⚡`) in the list header bar or the **Copy Format** setting in the Avatar menu to set your global default (`Rich Text`, `Plain Text`, `Markdown`, `HTML`, or `Auto (Mode)`).
+- **Right-Click "Copy As" Mini-Menu**: Right-click any snippet card's Copy button (or Quick Look's Copy button) to immediately copy as **Rich Text**, **Plain Text**, **Markdown**, or **HTML**—or choose from the card's `⋮` menu.
+- **Paste as New Snippet (`⌘V` / `Ctrl+V`)**: Click the split dropdown next to the **+ Add** button (or press `⌘V` / `Ctrl+V` when browsing snippets) to paste your clipboard directly into a new snippet as **Rich Text**, **Plain Text**, **Markdown**, or **HTML**.
+- **In-Editor Copy & Paste Dropdowns**: Inside the snippet editor header bar, use the **Copy ▾** and **Paste ▾** menus to copy or paste as **Rich Text**, **Plain Text**, **Markdown**, or **HTML**.
 
 :::tip[Formatting Guide]
 For complete details on authoring in **Visual WYSIWYG**, **Markdown**, or **Raw HTML** modes and the destination app behavior matrix, see the [Rich Text, HTML & Markdown Formatting guide](/features/rich-text-and-code/).
