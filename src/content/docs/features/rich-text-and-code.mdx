@@ -77,7 +77,7 @@ Supported languages include:
 SnippetHub supports **four copy & paste formats** across the entire application—both in the main snippet list and inside the snippet editor:
 
 1. **✨ Rich Text (`rich`)**: Writes dual MIME payloads (`text/html` + `text/plain` fallback) via the modern `ClipboardItem` API so Google Docs, Word, Gmail, Outlook, Notion, and Slack preserve headings, bold/italic styling, clickable links, and lists while plain-text inputs receive clean fallback text.
-2. **📄 Plain Text (`plain`)**: Strips all HTML markup and Markdown syntax, writing strictly unstyled `text/plain` to your clipboard—ideal when pasting into rich text editors without bringing along any source formatting.
+2. **📄 Plain Text (`plain`)**: Strips all HTML markup and Markdown syntax, writing strictly unstyled `text/plain` to your clipboard—and automatically bypasses variable fill-in prompts and dynamic placeholder expansion so raw template tokens like `{{brand}}` or `{{date}}` are copied verbatim.
 3. **📝 Markdown (`markdown`)**: Automatically converts rich HTML into clean GitHub-Flavored Markdown (`.md`) syntax (`# Headings`, `**bold**`, `[links](url)`, `- lists`) on the fly.
 4. **🌐 HTML (`html`)**: Copies or pastes the raw HTML source code (`<h3>`, `<p>`, `<a href="...">`).
 
